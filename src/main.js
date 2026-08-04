@@ -337,10 +337,11 @@ const jacketItems = [
 
 const slider = document.querySelector(".jacket-slider");
 const sliderMessage = document.querySelector(".slider-message");
+const jacketSlides = [];
 const correctText =
   "While the fashion industry focused on producing more garments, Marina focused on discovering more value within one.";
 
-jacketItems.forEach((item, i) => {
+jacketItems.forEach((item) => {
   const slide = document.createElement("div");
   slide.className = "jacket-slide";
   const img = document.createElement("img");
@@ -350,17 +351,28 @@ jacketItems.forEach((item, i) => {
   slide.appendChild(img);
   slide.addEventListener("click", () => {
     if (item.correct) {
-      slide.classList.add("jacket--correct");
       sliderMessage.textContent = correctText;
       sliderMessage.classList.remove("slider-message--error");
     } else {
-      slide.classList.add("jacket--wrong");
       sliderMessage.textContent = "LOOK CLOSER";
       sliderMessage.classList.add("slider-message--error");
+      jacketSlides.forEach((other) => {
+        if (!other.item.correct) other.slide.classList.add("jacket--faded");
+      });
     }
   });
+  jacketSlides.push({ item, slide });
   slider.appendChild(slide);
 });
+
+const centerJacket3 = () => {
+  const jacket3 = jacketSlides[2].slide;
+  slider.scrollLeft =
+    jacket3.offsetLeft - (slider.clientWidth - jacket3.offsetWidth) / 2;
+};
+
+centerJacket3();
+window.addEventListener("resize", centerJacket3);
 
 const track = document.querySelector(".carousel-track");
 const getScrollAmount = () => track.scrollWidth - window.innerWidth;

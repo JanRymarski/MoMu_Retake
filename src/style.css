@@ -416,34 +416,32 @@ body {
 .jacket-slider {
   display: flex;
   gap: 12px;
-  margin-top: 2rem;
+  position: relative;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  margin-top: 2rem;
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
 }
 
 .jacket-slide {
   flex-shrink: 0;
-  scroll-snap-align: center;
+  width: 65vw;
+  max-width: 360px;
   cursor: pointer;
-  touch-action: pan-x;
+  scroll-snap-align: center;
+  transition: opacity 0.3s ease;
 }
 
 .jacket-slide img {
   display: block;
-  height: 42vh;
-  width: auto;
+  width: 100%;
+  height: auto;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-.jacket--wrong img {
-  filter: brightness(0.6);
-}
-
-.jacket--correct img {
-  filter: brightness(1);
+.jacket--faded {
+  opacity: 0.65;
 }
 
 .slider-message {
