@@ -123,6 +123,15 @@ body {
   object-fit: cover;
 }
 
+.hero-bg-big {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
 .hero-cover {
   position: absolute;
   right: 0;
@@ -172,17 +181,58 @@ body {
 }
 
 .about-text {
+  max-width: 35rem;
   margin: 0 0 1rem;
   line-height: 1.6;
 }
 
-.about-banner {
+.antwerp-title {
+  margin: 2rem 0 1rem;
+  font-family: "sztos-variable", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  line-height: 1.2;
+  color: var(--main-blue);
+}
+
+.antwerp-hero {
+  position: relative;
+}
+
+.antwerp-banner {
   width: 100vw;
   max-width: none;
   height: auto;
   display: block;
   margin-left: -16px;
   margin-top: 2rem;
+}
+
+.antwerp-year {
+  display: none;
+}
+
+.antwerp-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #436de1;
+  background: none;
+  color: #436de1;
+  font-family: "subway-berlin-std", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 1;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.antwerp-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
 }
 .new-title {
   margin: 2rem 0 1rem;
@@ -221,7 +271,7 @@ body {
 .jacket-wrap {
   position: relative;
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem auto 0;
 }
 
 .jacket {
@@ -287,7 +337,7 @@ body {
 }
 
 .jacket-reveals {
-  margin-top: 1.5rem;
+  margin: 1.5rem auto 0;
 }
 
 .reveal-line {
@@ -313,7 +363,7 @@ body {
 .reveal-body {
   position: relative;
   display: inline-block;
-  flex: 1;
+  flex: 0 1 auto;
 }
 
 .reveal-text {
@@ -336,20 +386,34 @@ body {
 }
 
 .value-section {
+  position: relative;
   background: #333;
   padding: 3rem 16px;
-  margin-top: 3rem;
+  margin-top: calc(min(61.1vw, 297px) + 3rem);
   color: #fff;
+}
+
+.value-marina {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(70vw, 340px);
+  transform: translate(-50%, -60%);
+  clip-path: inset(0 0 40% 0);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .value-title {
   margin: 0 0 1rem;
-  font-family: "sztos-variable", sans-serif;
+  font-family: "subway-berlin-sc", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3rem;
-  line-height: 1.2;
+  font-size: clamp(4.5rem, 22vw, 10.5rem);
+  line-height: 0.9;
   color: #fff;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #436de1;
 }
 
 .value-hint {
@@ -374,9 +438,23 @@ body {
 }
 
 .value-reveal {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
   margin: 0 0 0.75rem;
   line-height: 1.6;
   color: #fff;
+}
+
+.value-reveal-number {
+  flex-shrink: 0;
+  font-family: "subway-berlin-std", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--main-red);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
 }
 
 .reconstruct-section {
@@ -403,6 +481,106 @@ body {
   will-change: left, top;
 }
 
+.hint-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.hint-row .jacket-hint {
+  margin: 0;
+}
+
+.hint-spot {
+  position: relative;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.hint-spot .spot-ring ellipse {
+  stroke: #436de1;
+}
+
+.hint-spot .spot-number {
+  color: #436de1;
+}
+
+.target-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  pointer-events: none;
+  animation: marker-pulse 1.2s ease-in-out infinite;
+}
+
+.target-marker .spot-ring ellipse {
+  stroke: #436de1;
+}
+
+@keyframes marker-pulse {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+.piece-good {
+  filter: drop-shadow(0 0 8px rgba(67, 109, 225, 0.9));
+}
+
+.reconstruct-done {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: min(45vh, 90vw);
+  height: 55vh;
+  overflow: hidden;
+  transform: translateX(-110%);
+  transition: transform 0.5s ease;
+  z-index: 50;
+}
+
+.reconstruct-done.is-done {
+  transform: translateX(0);
+}
+
+.done-marina {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 65vh;
+  width: auto;
+  transform: rotate(-12deg);
+}
+
+.done-text {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 90%;
+  color: #fff;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #436de1;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
 .select-section {
   padding: 16px;
   margin-top: 3rem;
@@ -419,7 +597,7 @@ body {
   position: relative;
   overflow-x: auto;
   margin-top: 2rem;
-  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -428,7 +606,6 @@ body {
   width: 65vw;
   max-width: 360px;
   cursor: pointer;
-  scroll-snap-align: center;
   transition: opacity 0.3s ease;
 }
 
@@ -468,27 +645,239 @@ body {
 
 .carousel {
   position: relative;
-  height: 100svh;
+  height: auto;
   overflow: hidden;
 }
 
 .carousel-track {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding-left: 16px;
-  height: 100%;
+  gap: clamp(32px, 6vw, 80px);
+  padding: 4rem 0 0 16px;
 }
 
-.carousel-item {
-  display: block;
+.carousel-slide {
+  position: relative;
   flex-shrink: 0;
   width: calc(100vw - 32px);
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
   height: auto;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  text-align: center;
+  font-family: "subway-berlin-std", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-transform: lowercase;
+  color: #436de1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+}
+
+.carousel + .about {
+  margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
   .hamburger {
     display: none;
+  }
+
+  .value-title {
+    font-size: 10.5rem;
+    line-height: 80%;
+    -webkit-text-stroke-width: 3px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-bg {
+    display: none;
+  }
+
+  .hero-bg-big {
+    display: block;
+  }
+
+  .hero-cover {
+    width: clamp(380px, 30vw, 480px);
+    height: auto;
+  }
+
+  .hero-title {
+    left: auto;
+    right: 10%;
+    max-width: none;
+    font-size: clamp(8rem, 15vw, 13rem);
+    line-height: 0.9;
+  }
+
+  .about-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .about-split .about-img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .about-split .about-copy {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-split .about-copy .about-title {
+    margin-top: 0;
+  }
+
+  .carousel-slide {
+    width: min(30vw, 420px);
+  }
+
+  .jacket-wrap {
+    width: min(32vw, 480px);
+  }
+
+  .jacket-reveals {
+    max-width: min(32vw, 480px);
+    padding-top: 8rem;
+  }
+
+  .about-jacket .jacket-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .about-jacket .jacket-stage .jacket-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    margin: 0;
+  }
+
+  .about-jacket .jacket-stage .jacket-reveals {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    margin: 0;
+  }
+
+  .about-antwerp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .antwerp-title {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 2;
+    margin: 0;
+    font-family: "subway-berlin-sc", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.9;
+    color: #436de1;
+  }
+
+  .antwerp-hero {
+    order: 1;
+  }
+
+  .antwerp-year {
+    display: inline-block;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 2;
+    font-family: "subway-berlin-sc", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 95%;
+    color: #436de1;
+  }
+
+  .antwerp-copy {
+    order: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .antwerp-copy .antwerp-button {
+    justify-self: start;
+  }
+
+  .about-antwerp .about-text {
+    margin-bottom: 0;
+  }
+
+  .value-marina {
+    left: auto;
+    right: 0;
+    transform: translate(0, -60%);
+  }
+
+  .value-title-first {
+    position: absolute;
+    top: -9rem;
+    left: 16px;
+    white-space: nowrap;
+  }
+
+  .value-title-second {
+    display: block;
+  }
+
+  .select-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .select-intro {
+    grid-column: 1;
+  }
+
+  .select-top .new-question {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .jacket-slider {
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .jacket-slide {
+    flex: 1 1 0;
+    max-width: none;
   }
 }

@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "./assets/logo.svg";
 import headerBackground from "./assets/header_background.jpg";
+import headerBackgroundBig from "./assets/header_background_big.jpg";
 import headerCover from "./assets/header_bg_cover.png";
 import aboutImage from "./assets/about.jpg";
 import antwerpSixImage from "./assets/antwerp_six.jpg";
@@ -23,8 +24,18 @@ import jacket03 from "./assets/jacket03.png";
 import jacket04 from "./assets/jacket04.png";
 import jacket05 from "./assets/jacket05.png";
 import jacketFinal from "./assets/jacket_final.png";
+import marina from "./assets/marina.png";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const carouselImages = [carousel1, carousel2, carousel3, carousel4, carousel5];
+const carouselCaptions = [
+  "M.Y. installation at Dover Street Market, Paris, 2025.",
+  "M.Y. installation at Dover Street Market, Paris, 2025.",
+  "M.Y. installation at Dover Street Market, Paris, 2025.",
+  "M.Y. installation at Dover Street Market, Paris, 2025.",
+  "M.Y. installation at Dover Street Market, Paris, 2025.",
+];
 
 document.querySelector("#app").innerHTML = `
 <div class="site-header">
@@ -38,6 +49,7 @@ document.querySelector("#app").innerHTML = `
   </nav>
   <section class="hero">
     <img class="hero-bg" src="${headerBackground}" alt="">
+    <img class="hero-bg-big" src="${headerBackgroundBig}" alt="">
     <h1 class="hero-title">Marina<br>Yee</h1>
     <img class="hero-cover" src="${headerCover}" alt="">
   </section>
@@ -47,43 +59,61 @@ document.querySelector("#app").innerHTML = `
   <p class="quote">Seeing value where others saw waste.</p>
 </section>
 
-<section class="about">
+<section class="about about-split">
   <img class="about-img" src="${aboutImage}" alt="">
-  <h2 class="about-title">About Marina</h2>
-  <p class="about-text">Fashion often celebrates the new. Every season brings new collections, trends and silhouettes, encouraging us to replace what came before. Marina Yee chose a different path. Instead of starting with new fabrics, she worked with garments that had already been worn and forgotten.</p>
-  <p class="about-text">She believed clothing carries history through its materials, construction and signs of wear. Rather than hiding those traces, she made them part of the design. Long before upcycling and slow fashion became familiar terms, Marina Yee showed that creativity doesn't have to begin with something new.</p>
+  <div class="about-copy">
+    <h2 class="about-title">About Marina</h2>
+    <p class="about-text">Fashion often celebrates the new. Every season brings new collections, trends and silhouettes, encouraging us to replace what came before. Marina Yee chose a different path. Instead of starting with new fabrics, she worked with garments that had already been worn and forgotten.</p>
+    <p class="about-text">She believed clothing carries history through its materials, construction and signs of wear. Rather than hiding those traces, she made them part of the design. Long before upcycling and slow fashion became familiar terms, Marina Yee showed that creativity doesn't have to begin with something new.</p>
+  </div>
 </section>
 
 <section class="carousel">
   <div class="carousel-track">
-    <img class="carousel-item" src="${carousel1}" alt="">
-    <img class="carousel-item" src="${carousel2}" alt="">
-    <img class="carousel-item" src="${carousel3}" alt="">
-    <img class="carousel-item" src="${carousel4}" alt="">
-    <img class="carousel-item" src="${carousel5}" alt="">
+    ${carouselImages
+      .map(
+        (src, i) => `
+    <figure class="carousel-slide">
+      <img class="carousel-item" src="${src}" alt="">
+      <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
+    </figure>`
+      )
+      .join("")}
   </div>
 </section>
 
-<section class="about">
-  <h2 class="about-title">The Antwerp Six</h2>
-  <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours, tailoring or theatrical silhouettes, Marina Yee followed her own path. Her work centred on reconstruction, craftsmanship and giving existing garments a second life.</p>
-  <img class="about-banner" src="${antwerpSixImage}" alt="">
+<section class="about about-antwerp">
+  <h2 class="antwerp-title">The Antwerp Six</h2>
+  <div class="antwerp-copy">
+    <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours, tailoring or theatrical silhouettes, Marina Yee followed her own path. Her work centred on reconstruction, craftsmanship and giving existing garments a second life.</p>
+    <div class="antwerp-right">
+      <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours</p>
+      <button class="antwerp-button" type="button">Discover more</button>
+    </div>
+  </div>
+  <div class="antwerp-hero">
+    <img class="antwerp-banner" src="${antwerpSixImage}" alt="">
+    <span class="antwerp-year">1986</span>
+  </div>
 </section>
 
-<section class="about">
+<section class="about about-jacket">
   <h2 class="new-title">Always Something New</h2>
   <p class="about-text">Fashion is built on the promise of something new. Every season introduces new collections, new trends and new reasons to replace what already hangs in our wardrobes. Clothing has become faster to produce, faster to consume and easier to discard. We rarely stop to ask what happens to the garments left behind</p>
   <h3 class="new-question">What if fashion didn't begin with something new?</h3>
   <h4 class="jacket-hint">Find the hidden value by clicking on jacket parts</h4>
-  <div class="jacket-wrap">
-    <img class="jacket" src="${jacket}" alt="Jacket">
-    <div class="jacket-hotspots"></div>
+  <div class="jacket-stage">
+    <div class="jacket-wrap">
+      <img class="jacket" src="${jacket}" alt="Jacket">
+      <div class="jacket-hotspots"></div>
+    </div>
+    <div class="jacket-reveals"></div>
   </div>
-  <div class="jacket-reveals"></div>
 </section>
 
 <section class="value-section">
-  <h2 class="value-title">Marina saw something different</h2>
+  <img class="value-marina" src="${marina}" alt="Portrait of Marina Yee">
+  <h2 class="value-title"><span class="value-title-first">Marina saw</span><span class="value-title-second"> something different</span></h2>
   <h4 class="value-hint">Find the value by clicking on jacket parts</h4>
   <div class="jacket-wrap">
     <img class="jacket" src="${jacket}" alt="Jacket">
@@ -96,18 +126,42 @@ document.querySelector("#app").innerHTML = `
   <h2 class="new-title">From Garment to Design</h2>
   <p class="about-text">Marina Yee didn't begin with a blank canvas. She began with garments that already had a history. By carefully taking them apart, she studied their construction before rebuilding them into something new.</p>
   <h3 class="new-question">Perhaps the first step towards producing less is learning to see more.</h3>
-  <h4 class="jacket-hint">reconstruct the garment.</h4>
+  <div class="hint-row">
+    <h4 class="jacket-hint">reconstruct the garment.</h4>
+    <button class="hint-spot" type="button" aria-label="Show correct placement">
+      <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <filter id="hint-ring-filter" x="-25%" y="-25%" width="150%" height="150%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
+          </filter>
+        </defs>
+        <ellipse class="ring-main" cx="50" cy="50" rx="38" ry="42" transform="rotate(-12 50 50)" fill="none" stroke-width="6" stroke-linecap="round" stroke-dasharray="70 14 45 10 80 18" filter="url(#hint-ring-filter)"/>
+        <ellipse class="ring-ghost" cx="50" cy="50" rx="44" ry="41" transform="rotate(20 50 50)" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="50 25 85 12 60 20" opacity="0.5" filter="url(#hint-ring-filter)"/>
+      </svg>
+      <span class="spot-number">?</span>
+    </button>
+  </div>
   <div class="reconstruct-stage"></div>
 </section>
 
+<div class="reconstruct-done" aria-hidden="true">
+  <img class="done-marina" src="${marina}" alt="">
+  <span class="done-text">good job</span>
+</div>
+
 <section class="select-section">
-  <h2 class="new-title">Before Slow Fashion Had a Name</h2>
-  <p class="about-text">When Marina Yee began reconstructing garments in the early 1980s, the fashion industry was driven by new collections and constant change. Existing clothing was rarely seen as the starting point for new design.</p>
-  <p class="about-text">Marina chose a different approach. Instead of creating more, she explored what already existed. By carefully deconstructing and rebuilding worn garments, she showed that creativity could begin with history rather than newness.</p>
-  <h3 class="new-question slider-question">fashion
+  <div class="select-top">
+    <div class="select-intro">
+      <h2 class="new-title">Before Slow Fashion Had a Name</h2>
+      <p class="about-text">When Marina Yee began reconstructing garments in the early 1980s, the fashion industry was driven by new collections and constant change. Existing clothing was rarely seen as the starting point for new design.</p>
+      <p class="about-text">Marina chose a different approach. Instead of creating more, she explored what already existed. By carefully deconstructing and rebuilding worn garments, she showed that creativity could begin with history rather than newness.</p>
+    </div>
+    <h3 class="new-question slider-question">fashion
 never
 stops
 producing</h3>
+  </div>
   <h4 class="jacket-hint">select one jacket</h4>
   <div class="jacket-slider"></div>
   <div class="slider-message"></div>
@@ -121,8 +175,15 @@ producing</h3>
   <p class="about-text">Now it's your turn</p>
   <h3 class="new-question">LOOK AGAIN</h3>
   <img class="look-image" src="${jacketFinal}" alt="Jacket">
+  <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created—it's the different way she taught us to see the ones we already have.</p>
 </section>
 `;
+
+gsap.fromTo(
+  ".hero-cover",
+  { xPercent: 100 },
+  { xPercent: 0, duration: 1.2, ease: "power3.out" }
+);
 
 const spots = [
   { label: "1", x: "72%", y: "16%", text: " A stain that ruined the garment." },
@@ -266,9 +327,16 @@ valuePositions.forEach((pos, i) => {
   btn.addEventListener("click", () => {
     if (btn.dataset.done) return;
     btn.dataset.done = "true";
+    btn.querySelector(".spot-number").textContent = String(i + 1);
     const p = document.createElement("p");
     p.className = "value-reveal";
-    p.textContent = valueTexts[i];
+    const num = document.createElement("span");
+    num.className = "value-reveal-number";
+    num.textContent = String(i + 1);
+    const txt = document.createElement("span");
+    txt.textContent = valueTexts[i];
+    p.appendChild(num);
+    p.appendChild(txt);
     valueReveals.appendChild(p);
   });
   valueLayer.appendChild(btn);
@@ -282,9 +350,29 @@ const pieces = [
   { src: object5, w: 282, x: "10%", y: "70%" },
 ];
 
-const stage = document.querySelector(".reconstruct-stage");
+const targets = [
+  { x: 50, y: 62 },
+  { x: 70, y: 50 },
+  { x: 50, y: 50 },
+  { x: 30, y: 50 },
+  { x: 50, y: 28 },
+];
 
-pieces.forEach((piece) => {
+const stage = document.querySelector(".reconstruct-stage");
+const donePanel = document.querySelector(".reconstruct-done");
+const TOLERANCE = 7;
+let lockedCount = 0;
+
+const showDone = () => {
+  donePanel.classList.add("is-done");
+  donePanel.setAttribute("aria-hidden", "false");
+  setTimeout(() => {
+    donePanel.classList.remove("is-done");
+    donePanel.setAttribute("aria-hidden", "true");
+  }, 3000);
+};
+
+pieces.forEach((piece, i) => {
   const img = document.createElement("img");
   img.className = "draggable";
   img.src = piece.src;
@@ -295,6 +383,7 @@ pieces.forEach((piece) => {
   img.style.top = piece.y;
 
   img.addEventListener("pointerdown", (e) => {
+    if (img.dataset.locked) return;
     e.preventDefault();
     const el = e.currentTarget;
     el.setPointerCapture(e.pointerId);
@@ -317,6 +406,21 @@ pieces.forEach((piece) => {
       el.removeEventListener("pointermove", move);
       el.removeEventListener("pointerup", up);
       el.removeEventListener("pointercancel", up);
+      const nx = parseFloat(el.style.left);
+      const ny = parseFloat(el.style.top);
+      const target = targets[i];
+      if (
+        Math.hypot(nx - target.x, ny - target.y) <= TOLERANCE &&
+        !el.dataset.locked
+      ) {
+        el.dataset.locked = "true";
+        el.classList.add("piece-good");
+        el.style.left = `${target.x}%`;
+        el.style.top = `${target.y}%`;
+        el.style.pointerEvents = "none";
+        lockedCount += 1;
+        if (lockedCount === pieces.length) showDone();
+      }
     };
 
     el.addEventListener("pointermove", move);
@@ -326,6 +430,43 @@ pieces.forEach((piece) => {
 
   stage.appendChild(img);
 });
+
+const hintButton = document.querySelector(".hint-spot");
+let markerTimer = null;
+
+const markerRing = (i) => {
+  const ring = rings[i % rings.length];
+  const filterId = `hint-marker-${i}`;
+  return `
+    <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <filter id="${filterId}" x="-25%" y="-25%" width="150%" height="150%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="${ring.seed}" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="${ring.scale}"/>
+        </filter>
+      </defs>
+      <ellipse class="ring-main" cx="50" cy="50" rx="${ring.main.rx}" ry="${ring.main.ry}" transform="rotate(${ring.main.rot} 50 50)" fill="none" stroke-width="${ring.main.sw}" stroke-linecap="round" stroke-dasharray="${ring.main.dash}" filter="url(#${filterId})"/>
+      <ellipse class="ring-ghost" cx="50" cy="50" rx="${ring.ghost.rx}" ry="${ring.ghost.ry}" transform="rotate(${ring.ghost.rot} 50 50)" fill="none" stroke-width="${ring.ghost.sw}" stroke-linecap="round" stroke-dasharray="${ring.ghost.dash}" opacity="${ring.ghost.o}" filter="url(#${filterId})"/>
+    </svg>`;
+};
+
+const showPlacement = () => {
+  stage.querySelectorAll(".target-marker").forEach((m) => m.remove());
+  targets.forEach((t, i) => {
+    const m = document.createElement("div");
+    m.className = "target-marker";
+    m.style.left = `${t.x}%`;
+    m.style.top = `${t.y}%`;
+    m.innerHTML = markerRing(i);
+    stage.appendChild(m);
+  });
+  clearTimeout(markerTimer);
+  markerTimer = setTimeout(() => {
+    stage.querySelectorAll(".target-marker").forEach((m) => m.remove());
+  }, 4000);
+};
+
+hintButton.addEventListener("click", showPlacement);
 
 const jacketItems = [
   { src: jacket01, correct: false },
