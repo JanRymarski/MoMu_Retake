@@ -897,6 +897,9 @@ html {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
+    padding-top: 3rem;
+    max-width: 72rem;
+    margin-inline: auto;
   }
 
   .antwerp-copy .antwerp-button {
