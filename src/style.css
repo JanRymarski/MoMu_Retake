@@ -45,8 +45,18 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#about {
+  scroll-margin-top: 2rem;
 }
 
 .site-header {
@@ -89,6 +99,42 @@ body {
   height: 8px;
   border-radius: 2px;
   background: var(--main-red);
+}
+
+.nav-menu {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--main-red);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-button {
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  padding: 0.55rem 1.6rem;
+  border: 3px solid var(--main-red);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--main-red);
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background: var(--main-red);
+  color: var(--bg);
 }
 
 .hero {
@@ -183,6 +229,7 @@ body {
 .about-text {
   max-width: 35rem;
   margin: 0 0 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.125rem);
   line-height: 1.6;
 }
 
@@ -695,6 +742,10 @@ body {
     display: none;
   }
 
+  .nav-menu {
+    display: flex;
+  }
+
   .value-title {
     font-size: 10.5rem;
     line-height: 80%;
@@ -718,12 +769,19 @@ body {
 
   .hero-title {
     left: auto;
-    right: 10%;
+    right: 20%;
     max-width: none;
     font-size: clamp(8rem, 15vw, 13rem);
     line-height: 0.9;
   }
+  .quote-section {
+    margin-top: 0;
+  }
 
+  .quote{
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    margin-top: -0.8em;
+  }
   .about-split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -737,19 +795,30 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
+    justify-self: end;
   }
-
+  .about-img{
+    max-width: 55%;
+    
+  }
   .about-split .about-copy {
     grid-column: 2;
     grid-row: 1;
+    align-self: stretch;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .about-split .about-copy::before {
+    content: "";
+    height: 20%;
   }
 
   .about-split .about-copy .about-title {
     margin-top: 0;
   }
-
+  
   .carousel-slide {
     width: min(30vw, 420px);
   }

@@ -30,17 +30,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 const carouselImages = [carousel1, carousel2, carousel3, carousel4, carousel5];
 const carouselCaptions = [
-  "M.Y. installation at Dover Street Market, Paris, 2025.",
-  "M.Y. installation at Dover Street Market, Paris, 2025.",
-  "M.Y. installation at Dover Street Market, Paris, 2025.",
-  "M.Y. installation at Dover Street Market, Paris, 2025.",
-  "M.Y. installation at Dover Street Market, Paris, 2025.",
+  "M.Y. installation at Dover Street Market, United Kingdom, 2025.",
+  "M.Y. installation at Paris, France, 2024.",
+  "A/W. installation 2003-2004",
+  "Catwalk at Barcelona, Spain, 2006.",
+  "Ensemble, Antwerp , Belgium, 2013.",
 ];
 
 document.querySelector("#app").innerHTML = `
 <div class="site-header">
   <nav class="nav-bar">
     <img src="${logo}" class="logo" alt="MoMu logo">
+    <div class="nav-menu">
+      <a class="nav-link" href="#about">About</a>
+      <button class="nav-button" type="button">Visit Museum</button>
+    </div>
     <button class="hamburger" type="button" aria-label="Open menu">
       <span></span>
       <span></span>
@@ -59,7 +63,7 @@ document.querySelector("#app").innerHTML = `
   <p class="quote">Seeing value where others saw waste.</p>
 </section>
 
-<section class="about about-split">
+<section class="about about-split" id="about">
   <img class="about-img" src="${aboutImage}" alt="">
   <div class="about-copy">
     <h2 class="about-title">About Marina</h2>
