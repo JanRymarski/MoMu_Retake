@@ -105,11 +105,27 @@ document.querySelector("#app").innerHTML = `
   <h2 class="new-title">Always Something New</h2>
   <p class="about-text">Fashion is built on the promise of something new. Every season introduces new collections, new trends and new reasons to replace what already hangs in our wardrobes. Clothing has become faster to produce, faster to consume and easier to discard. We rarely stop to ask what happens to the garments left behind</p>
   <h3 class="new-question">What if fashion didn't begin with something new?</h3>
-  <h4 class="jacket-hint">Find the hidden value by clicking on jacket parts</h4>
   <div class="jacket-stage">
     <div class="jacket-wrap">
       <img class="jacket" src="${jacket}" alt="Jacket">
       <div class="jacket-hotspots"></div>
+    </div>
+    
+    <div class="hint-row">
+      <h4 class="jacket-hint">Find the flaws by clicking on jacket parts</h4>
+      <button class="hint-spot jacket-spot-hint" type="button" aria-label="Show where to click">
+        <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <filter id="jacket-hint-ring-filter" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
+            </filter>
+          </defs>
+          <ellipse class="ring-main" cx="50" cy="50" rx="38" ry="42" transform="rotate(-12 50 50)" fill="none" stroke-width="6" stroke-linecap="round" stroke-dasharray="70 14 45 10 80 18" filter="url(#jacket-hint-ring-filter)"/>
+          <ellipse class="ring-ghost" cx="50" cy="50" rx="44" ry="41" transform="rotate(20 50 50)" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="50 25 85 12 60 20" opacity="0.5" filter="url(#jacket-hint-ring-filter)"/>
+        </svg>
+        <span class="spot-number">?</span>
+      </button>
     </div>
     <div class="jacket-reveals"></div>
   </div>
@@ -194,6 +210,24 @@ const prefersReducedMotion = window.matchMedia(
 ).matches;
 
 if (!prefersReducedMotion) {
+  const quote = document.querySelector(".quote");
+  const quoteWords = quote.textContent.trim().split(/\s+/);
+  quote.setAttribute("aria-label", quoteWords.join(" "));
+  quote.innerHTML = quoteWords
+    .map((word) => `<span class="quote-word" aria-hidden="true">${word}</span>`)
+    .join(" ");
+
+  gsap.from(".quote-word", {
+    x: -40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    delay: 1,
+    ease: "power3.out",
+  });
+}
+
+if (!prefersReducedMotion) {
   const aboutSection = document.querySelector("#about");
   const aboutTitle = aboutSection.querySelector(".about-title");
   const aboutParagraphs = [...aboutSection.querySelectorAll(".about-text")];
@@ -270,6 +304,7 @@ const rings = [
 
 const hotspotLayer = document.querySelector(".jacket-hotspots");
 const reveals = document.querySelector(".jacket-reveals");
+const spotButtons = [];
 
 const stripes = [
   { seed: 31, scale: 4 },
@@ -324,16 +359,42 @@ spots.forEach((spot, i) => {
       </svg>
       <span class="spot-number">${spot.label}</span>
     </span>`;
+  const number = btn.querySelector(".spot-number");
+  spotButtons.push({ btn, number, label: String(spot.label) });
   btn.addEventListener("click", () => {
     if (btn.dataset.done) return;
     btn.dataset.done = "true";
     btn.classList.add("spot--active");
+    number.textContent = String(spot.label);
     reveals
       .querySelector(`[data-index="${i}"]`)
       .classList.add("reveal-line--shown");
   });
   hotspotLayer.appendChild(btn);
 });
+
+const HINT_DURATION = 2000;
+let hintTimer = null;
+const showHotspotHints = () => {
+  spotButtons.forEach(({ btn, number }) => {
+    if (btn.dataset.done) return;
+    btn.classList.add("spot--active");
+    number.textContent = "?";
+  });
+  clearTimeout(hintTimer);
+  hintTimer = setTimeout(() => {
+    spotButtons.forEach(({ btn, number, label }) => {
+      if (!btn.dataset.done) {
+        btn.classList.remove("spot--active");
+        number.textContent = label;
+      }
+    });
+  }, HINT_DURATION);
+};
+
+document
+  .querySelector(".jacket-spot-hint")
+  .addEventListener("click", showHotspotHints);
 
 const valueTexts = [
   "A trace of the garment's history. Every mark tells the story of how a piece was worn, lived in and valued before it found a new purpose.",
