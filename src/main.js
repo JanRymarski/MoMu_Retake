@@ -1,18 +1,51 @@
 import "./style.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import logo from "./assets/logo.svg";
-import headerBackground from "./assets/header_background.jpg";
-import headerBackgroundBig from "./assets/header_background_big.jpg";
-import headerCover from "./assets/header_bg_cover.png";
-import aboutImage from "./assets/about.jpg";
-import antwerpSixImage from "./assets/antwerp_six.jpg";
+import headerBackground200 from "./assets/header_background_ps9j3g_c_scale,w_200.jpg";
+import headerBackground358 from "./assets/header_background_ps9j3g_c_scale,w_358.jpg";
+import headerBackground from "./assets/header_background_ps9j3g_c_scale,w_412.jpg";
+import headerBackgroundBig200 from "./assets/header_background_big_d3oxlb_c_scale,w_200.jpg";
+import headerBackgroundBig474 from "./assets/header_background_big_d3oxlb_c_scale,w_474.jpg";
+import headerBackgroundBig652 from "./assets/header_background_big_d3oxlb_c_scale,w_652.jpg";
+import headerBackgroundBig792 from "./assets/header_background_big_d3oxlb_c_scale,w_792.jpg";
+import headerBackgroundBig949 from "./assets/header_background_big_d3oxlb_c_scale,w_949.jpg";
+import headerBackgroundBig1071 from "./assets/header_background_big_d3oxlb_c_scale,w_1071.jpg";
+import headerBackgroundBig1295 from "./assets/header_background_big_d3oxlb_c_scale,w_1295.jpg";
+import headerBackgroundBig1397 from "./assets/header_background_big_d3oxlb_c_scale,w_1397.jpg";
+import headerBackgroundBig from "./assets/header_background_big_d3oxlb_c_scale,w_1400.jpg";
+import headerCover200 from "./assets/header_bg_cover_mvvoue_c_scale,w_200.png";
+import headerCover228 from "./assets/header_bg_cover_mvvoue_c_scale,w_228.png";
+import headerCover256 from "./assets/header_bg_cover_mvvoue_c_scale,w_256.png";
+import headerCover278 from "./assets/header_bg_cover_mvvoue_c_scale,w_278.png";
+import headerCover302 from "./assets/header_bg_cover_mvvoue_c_scale,w_302.png";
+import headerCover from "./assets/header_bg_cover_mvvoue_c_scale,w_304.png";
+import aboutImage200 from "./assets/about_n5z6ac_c_scale,w_200.jpg";
+import aboutImage363 from "./assets/about_n5z6ac_c_scale,w_363.jpg";
+import aboutImage476 from "./assets/about_n5z6ac_c_scale,w_476.jpg";
+import aboutImage from "./assets/about_n5z6ac_c_scale,w_493.jpg";
+import antwerpSix200 from "./assets/antwerp_six_er6rmd_c_scale,w_200.jpg";
+import antwerpSix738 from "./assets/antwerp_six_er6rmd_c_scale,w_738.jpg";
+import antwerpSix953 from "./assets/antwerp_six_er6rmd_c_scale,w_953.jpg";
+import antwerpSixImage from "./assets/antwerp_six_er6rmd_c_scale,w_1080.jpg";
 import jacket from "./assets/jacket.png";
-import carousel1 from "./assets/carousel1.jpg";
-import carousel2 from "./assets/carousel2.jpg";
-import carousel3 from "./assets/carousel3.jpg";
-import carousel4 from "./assets/carousel4.jpg";
-import carousel5 from "./assets/carousel5.jpg";
+import carousel1200 from "./assets/carousel1_h1kz3f_c_scale,w_200.jpg";
+import carousel1 from "./assets/carousel1_h1kz3f_c_scale,w_253.jpg";
+import carousel2200 from "./assets/carousel2_hftmaj_c_scale,w_200.jpg";
+import carousel2433 from "./assets/carousel2_hftmaj_c_scale,w_433.jpg";
+import carousel2598 from "./assets/carousel2_hftmaj_c_scale,w_598.jpg";
+import carousel2 from "./assets/carousel2_hftmaj_c_scale,w_800.jpg";
+import carousel3200 from "./assets/carousel3_drm1ht_c_scale,w_200.jpg";
+import carousel3558 from "./assets/carousel3_drm1ht_c_scale,w_558.jpg";
+import carousel3 from "./assets/carousel3_drm1ht_c_scale,w_800.jpg";
+import carousel4200 from "./assets/carousel4_ve2ca7_c_scale,w_200.jpg";
+import carousel4487 from "./assets/carousel4_ve2ca7_c_scale,w_487.jpg";
+import carousel4693 from "./assets/carousel4_ve2ca7_c_scale,w_693.jpg";
+import carousel4 from "./assets/carousel4_ve2ca7_c_scale,w_800.jpg";
+import carousel5200 from "./assets/carousel5_tytu55_c_scale,w_200.jpg";
+import carousel5733 from "./assets/carousel5_tytu55_c_scale,w_733.jpg";
+import carousel5 from "./assets/carousel5_tytu55_c_scale,w_800.jpg";
 import object1 from "./assets/object1.png";
 import object2 from "./assets/object2.png";
 import object3 from "./assets/object3.png";
@@ -26,11 +59,26 @@ import jacket05 from "./assets/jacket05.png";
 import jacketFinal from "./assets/jacket_final.png";
 import marina from "./assets/marina.png";
 import marinaOpen from "./assets/marina_openeyes.png";
-import correctOne from "./assets/correct_one.png";
-import correctTwo from "./assets/correct_two.png";
-import correctThre from "./assets/correct_thre.png";
-import correctFour from "./assets/correct_four.png";
-import correctFive from "./assets/correct_five.png";
+import correctOne200 from "./assets/correct_one_czahvv_c_scale,w_200.png";
+import correctOne235 from "./assets/correct_one_czahvv_c_scale,w_235.png";
+import correctOne260 from "./assets/correct_one_czahvv_c_scale,w_260.png";
+import correctOne from "./assets/correct_one_czahvv_c_scale,w_265.png";
+import correctTwo200 from "./assets/correct_two_jhnb1p_c_scale,w_200.png";
+import correctTwo235 from "./assets/correct_two_jhnb1p_c_scale,w_235.png";
+import correctTwo261 from "./assets/correct_two_jhnb1p_c_scale,w_261.png";
+import correctTwo from "./assets/correct_two_jhnb1p_c_scale,w_265.png";
+import correctThre200 from "./assets/correct_thre_miqiz2_c_scale,w_200.png";
+import correctThre233 from "./assets/correct_thre_miqiz2_c_scale,w_233.png";
+import correctThre262 from "./assets/correct_thre_miqiz2_c_scale,w_262.png";
+import correctThre from "./assets/correct_thre_miqiz2_c_scale,w_265.png";
+import correctFour200 from "./assets/correct_four_bjgyor_c_scale,w_200.png";
+import correctFour229 from "./assets/correct_four_bjgyor_c_scale,w_229.png";
+import correctFour253 from "./assets/correct_four_bjgyor_c_scale,w_253.png";
+import correctFour from "./assets/correct_four_bjgyor_c_scale,w_265.png";
+import correctFive200 from "./assets/correct_five_pqkujn_c_scale,w_200.png";
+import correctFive229 from "./assets/correct_five_pqkujn_c_scale,w_229.png";
+import correctFive256 from "./assets/correct_five_pqkujn_c_scale,w_256.png";
+import correctFive from "./assets/correct_five_pqkujn_c_scale,w_265.png";
 import labelOne from "./assets/label_one.png";
 import labelOneGood from "./assets/label_one_good.png";
 import labelTwo from "./assets/label_two.png";
@@ -40,9 +88,40 @@ import labelThreGood from "./assets/label_thre_good.png";
 import labelFour from "./assets/label_four.png";
 import labelFourGood from "./assets/label_four_good.png";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const carouselImages = [carousel1, carousel2, carousel3, carousel4, carousel5];
+// Recalculate trigger positions once every image/font has loaded,
+// so animations fire exactly where they should.
+window.addEventListener("load", () => ScrollTrigger.refresh());
+
+// Slides may optionally carry responsive data; plain srcs still work.
+const carouselImages = [
+  {
+    src: carousel1,
+    sizes: "(max-width: 253px) 100vw, 253px",
+    srcset: `${carousel1200} 200w, ${carousel1} 253w`,
+  },
+  {
+    src: carousel2,
+    sizes: "(max-width: 800px) 100vw, 800px",
+    srcset: `${carousel2200} 200w, ${carousel2433} 433w, ${carousel2598} 598w, ${carousel2} 800w`,
+  },
+  {
+    src: carousel3,
+    sizes: "(max-width: 800px) 100vw, 800px",
+    srcset: `${carousel3200} 200w, ${carousel3558} 558w, ${carousel3} 800w`,
+  },
+  {
+    src: carousel4,
+    sizes: "(max-width: 800px) 100vw, 800px",
+    srcset: `${carousel4200} 200w, ${carousel4487} 487w, ${carousel4693} 693w, ${carousel4} 800w`,
+  },
+  {
+    src: carousel5,
+    sizes: "(max-width: 800px) 100vw, 800px",
+    srcset: `${carousel5200} 200w, ${carousel5733} 733w, ${carousel5} 800w`,
+  },
+];
 const carouselCaptions = [
   "M.Y. installation at Dover Street Market, United Kingdom, 2025.",
   "M.Y. installation at Paris, France, 2024.",
@@ -67,10 +146,40 @@ document.querySelector("#app").innerHTML = `
     </button>
   </nav>
   <section class="hero">
-    <img class="hero-bg" src="${headerBackground}" alt="">
-    <img class="hero-bg-big" src="${headerBackgroundBig}" alt="">
+    <img
+      class="hero-bg"
+      sizes="(max-width: 412px) 100vw, 412px"
+      srcset="${headerBackground200} 200w,
+        ${headerBackground358} 358w,
+        ${headerBackground} 412w"
+      src="${headerBackground}"
+      alt="">
+    <img
+      class="hero-bg-big"
+      sizes="(max-width: 1400px) 100vw, 1400px"
+      srcset="${headerBackgroundBig200} 200w,
+        ${headerBackgroundBig474} 474w,
+        ${headerBackgroundBig652} 652w,
+        ${headerBackgroundBig792} 792w,
+        ${headerBackgroundBig949} 949w,
+        ${headerBackgroundBig1071} 1071w,
+        ${headerBackgroundBig1295} 1295w,
+        ${headerBackgroundBig1397} 1397w,
+        ${headerBackgroundBig} 1400w"
+      src="${headerBackgroundBig}"
+      alt="">
     <h1 class="hero-title">Marina<br>Yee</h1>
-    <img class="hero-cover" src="${headerCover}" alt="">
+    <img
+      class="hero-cover"
+      sizes="(max-width: 304px) 100vw, 304px"
+      srcset="${headerCover200} 200w,
+        ${headerCover228} 228w,
+        ${headerCover256} 256w,
+        ${headerCover278} 278w,
+        ${headerCover302} 302w,
+        ${headerCover} 304w"
+      src="${headerCover}"
+      alt="">
   </section>
 </div>
 
@@ -79,7 +188,15 @@ document.querySelector("#app").innerHTML = `
 </section>
 
 <section class="about about-split" id="about">
-  <img class="about-img" src="${aboutImage}" alt="">
+  <img
+    class="about-img"
+    sizes="(max-width: 493px) 100vw, 493px"
+    srcset="${aboutImage200} 200w,
+      ${aboutImage363} 363w,
+      ${aboutImage476} 476w,
+      ${aboutImage} 493w"
+    src="${aboutImage}"
+    alt="">
   <div class="about-copy">
     <h2 class="about-title">About Marina</h2>
     <p class="about-text">Fashion often celebrates the new. Every season brings new collections, trends and silhouettes, encouraging us to replace what came before. Marina Yee chose a different path. Instead of starting with new fabrics, she worked with garments that had already been worn and forgotten.</p>
@@ -91,9 +208,11 @@ document.querySelector("#app").innerHTML = `
   <div class="carousel-track">
     ${carouselImages
       .map(
-        (src, i) => `
+        (img, i) => `
     <figure class="carousel-slide">
-      <img class="carousel-item" src="${src}" alt="">
+      <img class="carousel-item" src="${img.src}"
+        ${img.sizes ? `sizes="${img.sizes}"` : ""}
+        ${img.srcset ? `srcset="${img.srcset}"` : ""} alt="">
       <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
     </figure>`,
       )
@@ -111,7 +230,15 @@ document.querySelector("#app").innerHTML = `
     </div>
   </div>
   <div class="antwerp-hero">
-    <img class="antwerp-banner" src="${antwerpSixImage}" alt="">
+    <img
+      class="antwerp-banner"
+      sizes="(max-width: 1080px) 100vw, 1080px"
+      srcset="${antwerpSix200} 200w,
+        ${antwerpSix738} 738w,
+        ${antwerpSix953} 953w,
+        ${antwerpSixImage} 1080w"
+      src="${antwerpSixImage}"
+      alt="">
     <span class="antwerp-year">1986</span>
   </div>
 </section>
@@ -228,11 +355,51 @@ producing</h3>
   <div class="slider-message new-question"></div>
   <div class="correct-stage is-hidden" aria-hidden="true">
     <div class="correct-sequence">
-      <img class="correct-frame" src="${correctOne}" alt="">
-      <img class="correct-frame" src="${correctTwo}" alt="">
-      <img class="correct-frame" src="${correctThre}" alt="">
-      <img class="correct-frame" src="${correctFour}" alt="">
-      <img class="correct-frame" src="${correctFive}" alt="">
+      <img
+        class="correct-frame"
+        sizes="(max-width: 265px) 100vw, 265px"
+        srcset="${correctOne200} 200w,
+          ${correctOne235} 235w,
+          ${correctOne260} 260w,
+          ${correctOne} 265w"
+        src="${correctOne}"
+        alt="">
+      <img
+        class="correct-frame"
+        sizes="(max-width: 265px) 100vw, 265px"
+        srcset="${correctTwo200} 200w,
+          ${correctTwo235} 235w,
+          ${correctTwo261} 261w,
+          ${correctTwo} 265w"
+        src="${correctTwo}"
+        alt="">
+      <img
+        class="correct-frame"
+        sizes="(max-width: 265px) 100vw, 265px"
+        srcset="${correctThre200} 200w,
+          ${correctThre233} 233w,
+          ${correctThre262} 262w,
+          ${correctThre} 265w"
+        src="${correctThre}"
+        alt="">
+      <img
+        class="correct-frame"
+        sizes="(max-width: 265px) 100vw, 265px"
+        srcset="${correctFour200} 200w,
+          ${correctFour229} 229w,
+          ${correctFour253} 253w,
+          ${correctFour} 265w"
+        src="${correctFour}"
+        alt="">
+      <img
+        class="correct-frame"
+        sizes="(max-width: 265px) 100vw, 265px"
+        srcset="${correctFive200} 200w,
+          ${correctFive229} 229w,
+          ${correctFive256} 256w,
+          ${correctFive} 265w"
+        src="${correctFive}"
+        alt="">
     </div>
   </div>
   <div class="antwerp-copy">
@@ -366,6 +533,44 @@ if (!prefersReducedMotion) {
     stagger: 0.12,
     delay: 1,
     ease: "power3.out",
+  });
+}
+
+/* ---------- "Written down" effect for .new-question headlines ----------
+   SplitText breaks each headline into characters that fade in sequence,
+   like being written by hand as it enters the viewport. Every headline
+   gets its own SplitText instance + trigger so they act independently. */
+const writeOnSplit = (el) => new SplitText(el, { type: "chars" });
+
+const playWriteOn = (split) =>
+  gsap.fromTo(
+    split.chars,
+    { opacity: 0 },
+    { opacity: 1, duration: 0.12, stagger: 0.03, ease: "none", overwrite: true },
+  );
+
+if (!prefersReducedMotion) {
+  document.querySelectorAll(".new-question").forEach((el) => {
+    // The empty slider message gets its text (and effect) at click time.
+    if (!el.textContent.trim()) return;
+
+    const split = writeOnSplit(el);
+    gsap.set(split.chars, { opacity: 0 });
+    ScrollTrigger.create({
+      // Fire exactly when this headline sits in the vertical
+      // centre of the viewport.
+      trigger: el,
+      start: "center center",
+      once: true,
+      onEnter: () =>
+        gsap.to(split.chars, {
+          opacity: 1,
+          duration: 0.12,
+          stagger: 0.03,
+          ease: "none",
+          overwrite: true,
+        }),
+    });
   });
 }
 
@@ -898,6 +1103,8 @@ jacketItems.forEach((item) => {
   slide.addEventListener("click", () => {
     if (item.correct) {
       sliderMessage.textContent = correctText;
+      // Write the message down the moment it appears
+      if (!prefersReducedMotion) playWriteOn(writeOnSplit(sliderMessage));
       initCorrectSequence();
     } else {
       jacketSlides.forEach((other) => {

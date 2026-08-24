@@ -303,7 +303,6 @@ html {
 
 .about {
   padding: var(--gutter);
-  margin-top: 3rem;
 }
 
 .about-img {
@@ -1094,30 +1093,34 @@ html {
   cursor: pointer;
 }
 
+/* All labels share one size */
+.look-label--one,
+.look-label--two,
+.look-label--thre,
+.look-label--four {
+  width: 46%;
+}
+
 /* Right side: label one at the shoulder, two just below it */
 .look-label--one {
   top: -5%;
-  right: -7%;
-  width: 42%;
+  right: -6%;
 }
 
 .look-label--two {
-  top: 28%;
-  right: -8%;
-  width: 38%;
+  top: 33%;
+  right: -7%;
 }
 
 /* Left side: three upper, four lower */
 .look-label--thre {
-  top: 14%;
-  left: -7%;
-  width: 38%;
+  top: 13%;
+  left: -6%;
 }
 
 .look-label--four {
-  top: 54%;
-  left: -7%;
-  width: 38%;
+  top: 55%;
+  left: -6%;
 }
 
 .look-label-img {
