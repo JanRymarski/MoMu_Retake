@@ -7,7 +7,8 @@
     "dev": "vite",
     "dev:host": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+    "deploy": "npm run build && cd dist && { [ -d .git ] || (git init -q -b gh-pages && git remote add origin git@github.com:JanRymarski/MoMu_Retake.git); } && git add -A && (git commit -qm 'Deploy' || true) && git push -f origin gh-pages"
   },
   "devDependencies": {
     "vite": "^8.2.0"
