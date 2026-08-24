@@ -775,17 +775,177 @@ html {
   opacity: 1;
 }
 
+/* Footer — modelled on momu.be: partners strip, secondary nav, socials */
+.site-footer {
+  margin-top: 3rem;
+  padding: var(--gutter);
+  background: #333;
+  color: #fff;
+}
+
+.site-footer__partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.site-footer__partners-label {
+  font-family: "subway-berlin-std", sans-serif;
+  font-size: 0.95rem;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.site-footer__partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__partner-link {
+  font-family: "subway-berlin-sc", sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.site-footer__partner-link:hover,
+.site-footer__partner-link:focus-visible {
+  color: var(--main-red);
+  opacity: 1;
+}
+
+.site-footer__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem 3rem;
+  padding: 2rem 0;
+}
+
+.site-footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 2.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__nav a {
+  font-family: "subway-berlin-std", sans-serif;
+  font-size: 1.05rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer__nav a:hover,
+.site-footer__nav a:focus-visible {
+  color: var(--main-red);
+}
+
+.site-footer__social {
+  font-style: normal;
+}
+
+.site-footer__social strong {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-family: "subway-berlin-std", sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+
+.site-footer__social ul {
+  display: flex;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__social a {
+  display: inline-flex;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.site-footer__social svg {
+  fill: currentColor;
+}
+
+.site-footer__social a:hover,
+.site-footer__social a:focus-visible {
+  color: var(--main-red);
+}
+
+.site-footer__legal {
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.85rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .look-section {
   padding: var(--gutter);
   margin-top: 3rem;
   color: var(--text);
 }
 
+.look-stage {
+  position: relative;
+  /* slider-jacket size (min(65vw, 360px)) + 25% */
+  width: min(81.25vw, 450px);
+  margin: 2rem auto 0;
+}
+
 .look-image {
   display: block;
-  width: 75%;
+  width: 100%;
   height: auto;
-  margin: 2rem auto 0;
+}
+
+.look-label {
+  position: absolute;
+  top: -4%;
+  right: -6%;
+  width: 34%;
+  z-index: 1; /* always paint above .look-image */
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.look-label-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.look-label-img--good {
+  display: none;
+}
+
+.look-label.is-swapped .look-label-img--default {
+  display: none;
+}
+
+.look-label.is-swapped .look-label-img--good {
+  display: block;
 }
 
 .carousel {

@@ -31,6 +31,8 @@ import correctTwo from "./assets/correct_two.png";
 import correctThre from "./assets/correct_thre.png";
 import correctFour from "./assets/correct_four.png";
 import correctFive from "./assets/correct_five.png";
+import labelOne from "./assets/label_one.png";
+import labelOneGood from "./assets/label_one_good.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -237,9 +239,78 @@ producing</h3>
   <p class="about-text">Throughout this story, you've seen how Marina Yee challenged the idea that clothing loses its value with time.</p>
   <p class="about-text">Now it's your turn</p>
   <h3 class="new-question">LOOK AGAIN</h3>
-  <img class="look-image" src="${jacketFinal}" alt="Jacket">
+  <div class="look-stage">
+    <img class="look-image" src="${jacketFinal}" alt="Jacket">
+    <button class="look-label" type="button" aria-label="Look at the label">
+      <img class="look-label-img look-label-img--default" src="${labelOne}" alt="">
+      <img class="look-label-img look-label-img--good" src="${labelOneGood}" alt="" aria-hidden="true">
+    </button>
+  </div>
   <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created—it's the different way she taught us to see the ones we already have.</p>
 </section>
+
+<footer class="site-footer">
+  <div class="site-footer__partners">
+    <span class="site-footer__partners-label">With support of</span>
+    <ul class="site-footer__partners-list">
+      <li>
+        <a class="site-footer__partner-link" href="https://www.visitantwerpen.be/" target="_blank" rel="noopener">Visit&nbsp;Antwerpen</a>
+      </li>
+      <li>
+        <a class="site-footer__partner-link" href="https://www.vlaanderen.be/nl" target="_blank" rel="noopener">Vlaanderen</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="site-footer__grid">
+    <nav class="site-footer__nav" aria-label="Secondary pages">
+      <ul>
+        <li><a href="#about">About the museum</a></li>
+        <li><a href="https://www.momu.be/en/press" target="_blank" rel="noopener">Press</a></li>
+        <li><a href="https://www.momu.be/en/privacy-statement" target="_blank" rel="noopener">Privacy statement</a></li>
+        <li><a href="https://www.momu.be/en/accessibility" target="_blank" rel="noopener">Digital accessibility</a></li>
+      </ul>
+    </nav>
+
+    <address class="site-footer__social">
+      <strong>Follow MoMu on:</strong>
+      <ul>
+        <li>
+          <a href="https://www.facebook.com/momuantwerp" target="_blank" rel="noopener" aria-label="Facebook (opens in a new tab)">
+            <svg viewBox="0 0 50 50" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title>
+              <path d="M50,25A25,25,0,1,0,24.44,50V30.2H18.75V24h5.69V17.7c0-5,3-8.3,9-8.3A22.89,22.89,0,0,1,38,9.81v5.82H34c-1.83,0-2.73,1-2.73,2.83V24H37.5l-.9,6.25H31.25v19A25,25,0,0,0,50,25Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/momuantwerp" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
+            <svg viewBox="0 0 50 50" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title>
+              <path d="M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0ZM39.47,31.09a10.42,10.42,0,0,1-.66,3.44,7.31,7.31,0,0,1-4.15,4.15,10.54,10.54,0,0,1-3.45.66c-1.51.07-2,.09-5.85.09s-4.34,0-5.85-.09a10.54,10.54,0,0,1-3.45-.66A6.94,6.94,0,0,1,13.55,37a6.86,6.86,0,0,1-1.64-2.51,10.42,10.42,0,0,1-.66-3.44c-.07-1.52-.08-2-.08-5.86s0-4.33.08-5.85a10.42,10.42,0,0,1,.66-3.44,7.23,7.23,0,0,1,4.15-4.15,10.54,10.54,0,0,1,3.45-.66c1.51-.07,2-.09,5.85-.09s4.34,0,5.85.09a10.54,10.54,0,0,1,3.45.66,6.91,6.91,0,0,1,2.51,1.63,7,7,0,0,1,1.64,2.52,10.42,10.42,0,0,1,.66,3.44c.07,1.52.08,2,.08,5.85S39.54,29.57,39.47,31.09Z"/>
+              <circle cx="25.35" cy="25.2" r="4.73"/>
+              <path d="M36.91,19.5a7.68,7.68,0,0,0-.49-2.64,4.3,4.3,0,0,0-1.06-1.63,4.47,4.47,0,0,0-1.63-1.06,7.87,7.87,0,0,0-2.64-.49c-1.49-.07-1.94-.08-5.73-.08s-4.24,0-5.74.08a7.86,7.86,0,0,0-2.63.49,4.47,4.47,0,0,0-1.63,1.06,4.3,4.3,0,0,0-1.06,1.63,7.68,7.68,0,0,0-.49,2.64c-.07,1.5-.09,1.94-.09,5.73s0,4.24.09,5.74a7.6,7.6,0,0,0,.49,2.63,4.26,4.26,0,0,0,1.06,1.64A4.47,4.47,0,0,0,17,36.3a8.13,8.13,0,0,0,2.63.49c1.5.07,1.95.08,5.74.08s4.24,0,5.73-.08a8.14,8.14,0,0,0,2.64-.49,4.47,4.47,0,0,0,1.63-1.06,4.26,4.26,0,0,0,1.06-1.64A7.6,7.6,0,0,0,36.91,31C37,29.47,37,29,37,25.23S37,21,36.91,19.5Zm-11.56,13a7.29,7.29,0,1,1,7.29-7.29A7.29,7.29,0,0,1,25.35,32.49Zm7.58-13a1.71,1.71,0,1,1,1.71-1.7A1.7,1.7,0,0,1,32.93,19.45Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/momuantwerp/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+            <svg viewBox="0 0 50 50" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title>
+              <path d="M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0ZM17.7,37.5H11.45V19.8H17.7ZM14.58,16.67h-.05C12,16.67,10.42,15,10.42,13s1.66-3.63,4.16-3.63S18.7,10.94,18.75,13,17.14,16.67,14.58,16.67ZM40.63,37.5H34.38V28.13C34.38,25,33.11,24,31.2,24s-3.07,1.64-3.07,4.18V37.5H21.88V24s-.13-3.47-.18-4.15h6.21l.22,2.71a5.36,5.36,0,0,1,5.2-3.76c4.46,0,7.3,3.64,7.3,9.38Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.pinterest.com/momuantwerp" target="_blank" rel="noopener" aria-label="Pinterest (opens in a new tab)">
+            <svg viewBox="0 0 50 50" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title>
+              <path d="M50,25A25,25,0,1,0,15,47.92a19.08,19.08,0,0,1,.42-5.73c.43-2.08,3.22-13.65,3.22-13.65a9.28,9.28,0,0,1-.81-3.95c0-3.69,2.15-6.47,4.81-6.47,2.25,0,3.35,1.68,3.35,3.76,0,2.24-1.44,5.66-2.2,8.86a3.84,3.84,0,0,0,3.93,4.78c4.76,0,7.93-6.05,7.93-13.23,0-5.52-3.63-9.62-10.35-9.62A11.87,11.87,0,0,0,13,24.66a7.4,7.4,0,0,0,1.62,4.91c.46.53.58.75.41,1.39-.12.46-.41,1.56-.51,2a.92.92,0,0,1-1.3.64C9.72,32.18,8.11,28.34,8.11,24c0-7.13,6-15.62,17.87-15.62,9.49,0,15.79,6.93,15.79,14.35,0,9.77-5.42,17.12-13.47,17.12-2.71,0-5.28-1.44-6.13-3.13,0,0-1.44,5.79-1.74,6.89A19.43,19.43,0,0,1,17.87,49,23.71,23.71,0,0,0,25,50,25,25,0,0,0,50,25Z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </address>
+  </div>
+
+  <p class="site-footer__legal">© 2026 MoMu — Fashion Museum Antwerp · Nationalestraat 28, 2000 Antwerp</p>
+</footer>
 `;
 
 gsap.fromTo(
@@ -735,17 +806,12 @@ const jacketSlides = [];
 const correctText =
   "While the fashion industry focused on producing more garments, Marina focused on discovering more value within one.";
 
-// Correct-jacket reward: reveal the frame sequence, then scrub through
-// it with scroll — opacity passes 1 -> 5 with a small hold between each.
 let sequenceStarted = false;
 
 const initCorrectSequence = () => {
   if (sequenceStarted) return;
   sequenceStarted = true;
 
-  // The stage is what gets revealed and pinned — it stays full-width so
-  // ScrollTrigger's fixed-position styles can never break the inner
-  // auto-margin centring of the frames.
   const stage = document.querySelector(".correct-stage");
   const sequence = stage.querySelector(".correct-sequence");
   const frames = gsap.utils.toArray(".correct-frame", sequence);
@@ -753,8 +819,6 @@ const initCorrectSequence = () => {
   stage.classList.remove("is-hidden");
   stage.setAttribute("aria-hidden", "false");
 
-  // Jump (no smoothing) straight to the exact centred position so the
-  // pin engages there deterministically, then fade the stage in place.
   const rect = stage.getBoundingClientRect();
   const centreOffset =
     rect.top + window.scrollY - (window.innerHeight - rect.height) / 2;
@@ -776,15 +840,14 @@ const initCorrectSequence = () => {
 
   let previous = frames[0];
   frames.forEach((frame, i) => {
-    if (i === 0) return; // frame one is already visible
-    tl.to({}, { duration: 0.2 }); // small stop between frames
+    if (i === 0) return; 
+    tl.to({}, { duration: 0.1 }); 
     tl.to(frame, { opacity: 1, duration: 0.45 });
-    // older frame disappears much faster than the new one fades in
+   
     tl.to(previous, { opacity: 0, duration: 0.16 }, "<");
     previous = frame;
   });
 
-  // Frames decode lazily once first shown; re-measure when they have.
   Promise.all(
     frames.map((frame) =>
       frame.complete
@@ -827,6 +890,15 @@ const centerJacket3 = () => {
 
 centerJacket3();
 window.addEventListener("resize", centerJacket3);
+
+// Look-section: clicking the label swaps it to its "good" version,
+// in the exact same spot.
+const lookLabel = document.querySelector(".look-label");
+
+lookLabel.addEventListener("click", () => {
+  if (lookLabel.classList.contains("is-swapped")) return;
+  lookLabel.classList.add("is-swapped");
+});
 
 const track = document.querySelector(".carousel-track");
 const getScrollAmount = () => track.scrollWidth - window.innerWidth;
