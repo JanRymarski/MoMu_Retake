@@ -26,6 +26,11 @@ import jacket05 from "./assets/jacket05.png";
 import jacketFinal from "./assets/jacket_final.png";
 import marina from "./assets/marina.png";
 import marinaOpen from "./assets/marina_openeyes.png";
+import correctOne from "./assets/correct_one.png";
+import correctTwo from "./assets/correct_two.png";
+import correctThre from "./assets/correct_thre.png";
+import correctFour from "./assets/correct_four.png";
+import correctFive from "./assets/correct_five.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,7 +86,7 @@ document.querySelector("#app").innerHTML = `
     <figure class="carousel-slide">
       <img class="carousel-item" src="${src}" alt="">
       <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
-    </figure>`
+    </figure>`,
       )
       .join("")}
   </div>
@@ -138,12 +143,30 @@ document.querySelector("#app").innerHTML = `
     <img class="value-marina value-marina--open" src="${marinaOpen}" alt="" aria-hidden="true">
   </div>
   <h2 class="value-title">Marina saw something different</h2>
-  <h4 class="value-hint">Find the value by clicking on jacket parts</h4>
-  <div class="jacket-wrap">
-    <img class="jacket" src="${jacket}" alt="Jacket">
-    <div class="jacket-hotspots"></div>
+  <div class="hint-row">
+    <h4 class="value-hint">Find the value by clicking on jacket parts</h4>
+    <button class="hint-spot value-spot-hint" type="button" aria-label="Show where to click">
+      <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <filter id="value-hint-ring-filter" x="-25%" y="-25%" width="150%" height="150%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
+          </filter>
+        </defs>
+        <ellipse class="ring-main" cx="50" cy="50" rx="38" ry="42" transform="rotate(-12 50 50)" fill="none" stroke-width="6" stroke-linecap="round" stroke-dasharray="70 14 45 10 80 18" filter="url(#value-hint-ring-filter)"/>
+        <ellipse class="ring-ghost" cx="50" cy="50" rx="44" ry="41" transform="rotate(20 50 50)" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="50 25 85 12 60 20" opacity="0.5" filter="url(#value-hint-ring-filter)"/>
+      </svg>
+      <span class="spot-number">?</span>
+    </button>
   </div>
-  <div class="value-reveals"></div>
+  <div class="value-stage">
+    <div class="value-reveals-col value-reveals-col--left"></div>
+    <div class="jacket-wrap">
+      <img class="jacket" src="${jacket}" alt="Jacket">
+      <div class="jacket-hotspots"></div>
+    </div>
+    <div class="value-reveals-col value-reveals-col--right"></div>
+  </div>
 </section>
 
 <section class="reconstruct-section">
@@ -174,6 +197,11 @@ document.querySelector("#app").innerHTML = `
   <span class="done-text">good job</span>
 </div>
 
+<div class="reconstruct-done reconstruct-done--error" aria-hidden="true">
+  <img class="done-marina" src="${marina}" alt="">
+  <span class="done-text">LOOK CLOSER</span>
+</div>
+
 <section class="select-section">
   <div class="select-top">
     <div class="select-intro">
@@ -188,10 +216,21 @@ producing</h3>
   </div>
   <h4 class="jacket-hint">select one jacket</h4>
   <div class="jacket-slider"></div>
-  <div class="slider-message"></div>
+  <div class="slider-message new-question"></div>
+  <div class="correct-stage is-hidden" aria-hidden="true">
+    <div class="correct-sequence">
+      <img class="correct-frame" src="${correctOne}" alt="">
+      <img class="correct-frame" src="${correctTwo}" alt="">
+      <img class="correct-frame" src="${correctThre}" alt="">
+      <img class="correct-frame" src="${correctFour}" alt="">
+      <img class="correct-frame" src="${correctFive}" alt="">
+    </div>
+  </div>
+  <div class="antwerp-copy">
   <p class="about-text">For Marina, reconstruction wasn't a trend or a response to sustainability. It was her way of designing. Every garment carried craftsmanship, materials and stories worth preserving instead of replacing.</p>
   <p class="about-text">Decades later, many of the ideas that shaped Marina's work—reuse, longevity and thoughtful production—became central to what we now call slow fashion. While the language changed, Marina's philosophy remained the same.</p>
-</section>
+<div/>
+  </section>
 
 <section class="look-section">
   <h2 class="new-title">What Do You See Now?</h2>
@@ -206,11 +245,11 @@ producing</h3>
 gsap.fromTo(
   ".hero-cover",
   { xPercent: 100 },
-  { xPercent: 0, duration: 1.2, delay: 1, ease: "power3.out" }
+  { xPercent: 0, duration: 1.2, delay: 1, ease: "power3.out" },
 );
 
 const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
+  "(prefers-reduced-motion: reduce)",
 ).matches;
 
 if (!prefersReducedMotion) {
@@ -240,7 +279,9 @@ if (!prefersReducedMotion) {
     const words = el.textContent.trim().split(/\s+/);
     el.setAttribute("aria-label", words.join(" "));
     el.innerHTML = words
-      .map((word) => `<span class="reveal-word" aria-hidden="true">${word}</span>`)
+      .map(
+        (word) => `<span class="reveal-word" aria-hidden="true">${word}</span>`,
+      )
       .join(" ");
   });
 
@@ -263,19 +304,24 @@ if (!prefersReducedMotion) {
     .to(
       aboutParagraphs[0].querySelectorAll(".reveal-word"),
       { opacity: 1, stagger: 0.03, duration: 0.4 },
-      "<0.2"
+      "<0.2",
     )
     .to(
       aboutParagraphs[1].querySelectorAll(".reveal-word"),
       { opacity: 1, stagger: 0.03, duration: 0.4 },
-      "<0.3"
+      "<0.3",
     );
 }
 
 const spots = [
   { label: "1", x: "72%", y: "16%", text: " A stain that ruined the garment." },
   { label: "2", x: "26%", y: "52%", text: " A patch added to cover a tear." },
-  { label: "3", x: "60%", y: "62%", text: " A pocket worn through at the edge." },
+  {
+    label: "3",
+    x: "60%",
+    y: "62%",
+    text: " A pocket worn through at the edge.",
+  },
   { label: "4", x: "72%", y: "86%", text: " A hem re-stitched by hand." },
 ];
 
@@ -284,25 +330,53 @@ const rings = [
     seed: 3,
     scale: 8,
     main: { rx: 38, ry: 42, rot: -12, sw: 6, dash: "70 14 45 10 80 18" },
-    ghost: { rx: 44, ry: 41, rot: 20, sw: 4, dash: "50 25 85 12 60 20", o: 0.5 },
+    ghost: {
+      rx: 44,
+      ry: 41,
+      rot: 20,
+      sw: 4,
+      dash: "50 25 85 12 60 20",
+      o: 0.5,
+    },
   },
   {
     seed: 8,
     scale: 10,
     main: { rx: 44, ry: 38, rot: 8, sw: 7, dash: "90 10 35 12 70 15" },
-    ghost: { rx: 40, ry: 46, rot: -25, sw: 3, dash: "40 30 75 15 90 10", o: 0.45 },
+    ghost: {
+      rx: 40,
+      ry: 46,
+      rot: -25,
+      sw: 3,
+      dash: "40 30 75 15 90 10",
+      o: 0.45,
+    },
   },
   {
     seed: 12,
     scale: 11,
     main: { rx: 40, ry: 44, rot: -30, sw: 5, dash: "55 20 95 10 65 12" },
-    ghost: { rx: 46, ry: 40, rot: 15, sw: 4, dash: "80 18 45 22 70 14", o: 0.55 },
+    ghost: {
+      rx: 46,
+      ry: 40,
+      rot: 15,
+      sw: 4,
+      dash: "80 18 45 22 70 14",
+      o: 0.55,
+    },
   },
   {
     seed: 21,
     scale: 13,
     main: { rx: 42, ry: 40, rot: 18, sw: 6, dash: "65 16 85 8 50 25" },
-    ghost: { rx: 38, ry: 45, rot: -10, sw: 5, dash: "90 20 40 18 75 15", o: 0.4 },
+    ghost: {
+      rx: 38,
+      ry: 45,
+      rot: -10,
+      sw: 5,
+      dash: "90 20 40 18 75 15",
+      o: 0.4,
+    },
   },
 ];
 
@@ -404,22 +478,56 @@ const valueTexts = [
   "A trace of the garment's history. Every mark tells the story of how a piece was worn, lived in and valued before it found a new purpose.",
   "An opportunity to reconstruct. Instead of hiding imperfections, she often used them as the starting point for a new silhouette or unexpected detail.",
   "Character. Years of wear create textures and tones that cannot be reproduced with new fabric, giving each garment a unique identity.",
+  "A second life. By reworking what already existed, Marina gave forgotten garments a future instead of letting them be thrown away.",
 ];
 
 const valuePositions = [
   { x: "72%", y: "16%" },
   { x: "26%", y: "52%" },
   { x: "60%", y: "62%" },
+  { x: "72%", y: "86%" }, // same place as the fourth spot in about-jacket
 ];
 
+// Two revealed texts sit on each side of the jacket.
+const valueSides = ["right", "left", "left", "right"];
+
 const valueLayer = document.querySelector(".value-section .jacket-hotspots");
-const valueReveals = document.querySelector(".value-reveals");
+
+const valueColumns = {
+  left: document.querySelector(".value-reveals-col--left"),
+  right: document.querySelector(".value-reveals-col--right"),
+};
+
+const valueRevealLines = valueTexts.map((text, i) => {
+  const stripe = stripes[i];
+  const filterId = `value-stripe-${i}`;
+  const line = document.createElement("p");
+  line.className = "reveal-line";
+  line.innerHTML = `
+    <span class="reveal-number">${i + 1}</span>
+    <span class="reveal-body">
+      <span class="reveal-text">${text}</span>
+      <svg class="reveal-stripe" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <filter id="${filterId}" x="-5%" y="-40%" width="110%" height="180%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="${stripe.seed}" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="${stripe.scale}"/>
+          </filter>
+        </defs>
+        <rect x="0" y="0" width="300" height="26" filter="url(#${filterId})"/>
+      </svg>
+    </span>`;
+  valueColumns[valueSides[i]].appendChild(line);
+  return line;
+});
+
+const valueSpots = [];
 
 valuePositions.forEach((pos, i) => {
   const ring = rings[i];
   const filterId = `value-marker-sketch-${i}`;
   const btn = document.createElement("button");
-  btn.className = "spot spot--active";
+  btn.className = "spot";
   btn.type = "button";
   btn.style.left = pos.x;
   btn.style.top = pos.y;
@@ -436,24 +544,37 @@ valuePositions.forEach((pos, i) => {
         <ellipse class="ring-main" cx="50" cy="50" rx="${ring.main.rx}" ry="${ring.main.ry}" transform="rotate(${ring.main.rot} 50 50)" fill="none" stroke-width="${ring.main.sw}" stroke-linecap="round" stroke-dasharray="${ring.main.dash}" filter="url(#${filterId})"/>
         <ellipse class="ring-ghost" cx="50" cy="50" rx="${ring.ghost.rx}" ry="${ring.ghost.ry}" transform="rotate(${ring.ghost.rot} 50 50)" fill="none" stroke-width="${ring.ghost.sw}" stroke-linecap="round" stroke-dasharray="${ring.ghost.dash}" opacity="${ring.ghost.o}" filter="url(#${filterId})"/>
       </svg>
-      <span class="spot-number">?</span>
+      <span class="spot-number">${i + 1}</span>
     </span>`;
+  const number = btn.querySelector(".spot-number");
+  valueSpots.push({ btn, number, label: String(i + 1) });
   btn.addEventListener("click", () => {
     if (btn.dataset.done) return;
     btn.dataset.done = "true";
-    btn.querySelector(".spot-number").textContent = String(i + 1);
-    const p = document.createElement("p");
-    p.className = "value-reveal";
-    const num = document.createElement("span");
-    num.className = "value-reveal-number";
-    num.textContent = String(i + 1);
-    const txt = document.createElement("span");
-    txt.textContent = valueTexts[i];
-    p.appendChild(num);
-    p.appendChild(txt);
-    valueReveals.appendChild(p);
+    btn.classList.add("spot--active");
+    number.textContent = String(i + 1);
+    valueRevealLines[i].classList.add("reveal-line--shown");
   });
   valueLayer.appendChild(btn);
+});
+
+let valueHintTimer = null;
+
+document.querySelector(".value-spot-hint").addEventListener("click", () => {
+  valueSpots.forEach(({ btn, number }) => {
+    if (btn.dataset.done) return;
+    btn.classList.add("spot--active");
+    number.textContent = "?";
+  });
+  clearTimeout(valueHintTimer);
+  valueHintTimer = setTimeout(() => {
+    valueSpots.forEach(({ btn, number, label }) => {
+      if (!btn.dataset.done) {
+        btn.classList.remove("spot--active");
+        number.textContent = label;
+      }
+    });
+  }, HINT_DURATION);
 });
 
 const pieces = [
@@ -478,11 +599,29 @@ const TOLERANCE = 7;
 let lockedCount = 0;
 
 const showDone = () => {
+  // Dismiss the LOOK CLOSER popup if it is still on screen.
+  clearTimeout(errorTimer);
+  errorPanel.classList.remove("is-done");
+  errorPanel.setAttribute("aria-hidden", "true");
+
   donePanel.classList.add("is-done");
   donePanel.setAttribute("aria-hidden", "false");
   setTimeout(() => {
     donePanel.classList.remove("is-done");
     donePanel.setAttribute("aria-hidden", "true");
+  }, 3000);
+};
+
+const errorPanel = document.querySelector(".reconstruct-done--error");
+let errorTimer = null;
+
+const showError = () => {
+  errorPanel.classList.add("is-done");
+  errorPanel.setAttribute("aria-hidden", "false");
+  clearTimeout(errorTimer);
+  errorTimer = setTimeout(() => {
+    errorPanel.classList.remove("is-done");
+    errorPanel.setAttribute("aria-hidden", "true");
   }, 3000);
 };
 
@@ -596,6 +735,67 @@ const jacketSlides = [];
 const correctText =
   "While the fashion industry focused on producing more garments, Marina focused on discovering more value within one.";
 
+// Correct-jacket reward: reveal the frame sequence, then scrub through
+// it with scroll — opacity passes 1 -> 5 with a small hold between each.
+let sequenceStarted = false;
+
+const initCorrectSequence = () => {
+  if (sequenceStarted) return;
+  sequenceStarted = true;
+
+  // The stage is what gets revealed and pinned — it stays full-width so
+  // ScrollTrigger's fixed-position styles can never break the inner
+  // auto-margin centring of the frames.
+  const stage = document.querySelector(".correct-stage");
+  const sequence = stage.querySelector(".correct-sequence");
+  const frames = gsap.utils.toArray(".correct-frame", sequence);
+
+  stage.classList.remove("is-hidden");
+  stage.setAttribute("aria-hidden", "false");
+
+  // Jump (no smoothing) straight to the exact centred position so the
+  // pin engages there deterministically, then fade the stage in place.
+  const rect = stage.getBoundingClientRect();
+  const centreOffset =
+    rect.top + window.scrollY - (window.innerHeight - rect.height) / 2;
+  window.scrollTo({ top: Math.max(centreOffset, 0) });
+  gsap.from(stage, { opacity: 0, duration: 0.6, ease: "power2.out" });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: stage,
+      start: "center center",
+      end: "+=1600",
+      scrub: 0.5,
+      // Lock the page here: the sequence stays centred and consumes
+      // the scroll until frame five has fully faded in.
+      pin: true,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  let previous = frames[0];
+  frames.forEach((frame, i) => {
+    if (i === 0) return; // frame one is already visible
+    tl.to({}, { duration: 0.2 }); // small stop between frames
+    tl.to(frame, { opacity: 1, duration: 0.45 });
+    // older frame disappears much faster than the new one fades in
+    tl.to(previous, { opacity: 0, duration: 0.16 }, "<");
+    previous = frame;
+  });
+
+  // Frames decode lazily once first shown; re-measure when they have.
+  Promise.all(
+    frames.map((frame) =>
+      frame.complete
+        ? Promise.resolve()
+        : new Promise((resolve) =>
+            frame.addEventListener("load", resolve, { once: true })
+          )
+    )
+  ).then(() => ScrollTrigger.refresh());
+};
+
 jacketItems.forEach((item) => {
   const slide = document.createElement("div");
   slide.className = "jacket-slide";
@@ -607,13 +807,12 @@ jacketItems.forEach((item) => {
   slide.addEventListener("click", () => {
     if (item.correct) {
       sliderMessage.textContent = correctText;
-      sliderMessage.classList.remove("slider-message--error");
+      initCorrectSequence();
     } else {
-      sliderMessage.textContent = "LOOK CLOSER";
-      sliderMessage.classList.add("slider-message--error");
       jacketSlides.forEach((other) => {
         if (!other.item.correct) other.slide.classList.add("jacket--faded");
       });
+      showError();
     }
   });
   jacketSlides.push({ item, slide });

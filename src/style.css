@@ -293,7 +293,7 @@ html {
   font-family: "sztos-variable", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3rem;
+  font-size: clamp(3rem, 7.5vw, 6rem);
   line-height: 1.2;
   color: var(--main-red);
 }
@@ -500,33 +500,77 @@ html {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.value-section .spot-marker {
-  opacity: 1;
-  transform: scale(1);
+.hint-row .value-hint {
+  margin: 0;
 }
 
-.value-reveals {
-  margin-top: 1.5rem;
+/* Reveals flank the jacket: left column, jacket, right column.
+   Equal side tracks + a content-sized centre track keep the jacket
+   exactly on the midline between the texts. */
+.value-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min-content minmax(0, 1fr);
+  grid-template-areas:
+    "left jacket right";
+  gap: 0 2.5rem;
+  align-items: center;
 }
 
-.value-reveal {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  margin: 0 0 0.75rem;
-  line-height: 1.6;
-  color: #fff;
+.value-reveals-col--left {
+  grid-area: left;
 }
 
-.value-reveal-number {
-  flex-shrink: 0;
-  font-family: "subway-berlin-std", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--main-red);
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+.value-reveals-col--right {
+  grid-area: right;
+}
+
+.value-reveals-col--right .reveal-line {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.value-stage .jacket-wrap {
+  grid-area: jacket;
+  width: clamp(300px, 40vw, 620px);
+  justify-self: center;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .value-stage {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "jacket"
+      "left"
+      "right";
+    gap: 1.5rem 0;
+  }
+
+  .value-stage .jacket-wrap {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .value-reveals-col--right .reveal-line {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .value-stage {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "jacket"
+      "left"
+      "right";
+    gap: 1.5rem 0;
+  }
+
+  .value-reveals-col--right .reveal-line {
+    flex-direction: row;
+    text-align: left;
+  }
 }
 
 .reconstruct-section {
@@ -537,8 +581,9 @@ html {
 
 .reconstruct-stage {
   position: relative;
-  height: 80svh;
-  margin-top: 2rem;
+  width: min(720px, 100%);
+  height: min(72svh, 620px);
+  margin: 2rem auto 0;
   overflow: hidden;
 }
 
@@ -559,6 +604,7 @@ html {
   justify-content: center;
   gap: 0.75rem;
   margin-top: 1.5rem;
+  padding-bottom: 4rem;
 }
 
 .hint-row .jacket-hint {
@@ -653,9 +699,14 @@ html {
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
+.reconstruct-done--error .done-text {
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  color: var(--main-red);
+  -webkit-text-stroke-color: #fff;
+}
+
 .select-section {
   padding: var(--gutter);
-  margin-top: 3rem;
   color: var(--text);
 }
 
@@ -668,7 +719,9 @@ html {
   gap: 12px;
   position: relative;
   overflow-x: auto;
-  margin-top: 2rem;
+  /* Room for the hover zoom so it never clips or scrolls vertically. */
+  padding: 12px 0;
+  margin-top: calc(2rem - 12px);
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
 }
@@ -687,19 +740,39 @@ html {
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .jacket-slide:hover img {
+    transform: scale(1.05);
+  }
 }
 
 .jacket--faded {
   opacity: 0.65;
 }
 
-.slider-message {
-  margin-top: 1rem;
-  line-height: 1.6;
+.correct-stage.is-hidden {
+  display: none;
 }
 
-.slider-message--error {
-  color: var(--main-red);
+.correct-sequence {
+  position: relative;
+  display: grid;
+  width: min(420px, 72vw);
+  margin: 3rem auto 0;
+}
+
+.correct-frame {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+.correct-frame:first-child {
+  opacity: 1;
 }
 
 .look-section {
@@ -786,6 +859,12 @@ html {
 
   .value-hint {
     margin-top: clamp(8rem, 15vw, 12.5rem);
+  }
+
+  /* The absolute .value-title straddles the section top; push the
+     hint row below it. */
+  .value-section .hint-row {
+    padding-top: 8rem;
   }
 }
 
@@ -1014,5 +1093,33 @@ html {
   .jacket-slide {
     flex: 1 1 0;
     max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop: "select one jacket" sits under the intro texts instead of
+     spanning the full width. */
+  .select-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .select-section > * {
+    grid-column: 1 / -1;
+  }
+
+  .select-section .jacket-hint {
+    grid-column: 1;
+    text-align: left;
+  }
+
+  /* Tilted display question, fluid so it shrinks as the window narrows. */
+  .slider-question {
+    transform: rotate(20.66deg);
+    font-size: clamp(3rem, 8.4vw, 7.5rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 95%;
   }
 }
