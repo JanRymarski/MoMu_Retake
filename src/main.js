@@ -33,6 +33,12 @@ import correctFour from "./assets/correct_four.png";
 import correctFive from "./assets/correct_five.png";
 import labelOne from "./assets/label_one.png";
 import labelOneGood from "./assets/label_one_good.png";
+import labelTwo from "./assets/label_two.png";
+import labelTwoGood from "./assets/label_two_good.png";
+import labelThre from "./assets/label_thre.png";
+import labelThreGood from "./assets/label_thre_good.png";
+import labelFour from "./assets/label_four.png";
+import labelFourGood from "./assets/label_four_good.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,7 +107,7 @@ document.querySelector("#app").innerHTML = `
     <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours, tailoring or theatrical silhouettes, Marina Yee followed her own path. Her work centred on reconstruction, craftsmanship and giving existing garments a second life.</p>
     <div class="antwerp-right">
       <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours</p>
-      <button class="antwerp-button" type="button">Discover more</button>
+      <a class="antwerp-button" href="https://www.momu.be/en/exhibitions/the-antwerp-six" target="_blank" rel="noopener">Discover more</a>
     </div>
   </div>
   <div class="antwerp-hero">
@@ -242,9 +248,21 @@ producing</h3>
    <h4 class="jacket-hint">scratch label</h4>
   <div class="look-stage">
     <img class="look-image" src="${jacketFinal}" alt="Jacket">
-    <button class="look-label" type="button" aria-label="Look at the label">
-      <img class="look-label-img look-label-img--default" src="${labelOne}" alt="">
+    <button class="look-label look-label--one" type="button" aria-label="Inspect label one">
+      <img class="look-label-img" src="${labelOne}" alt="">
       <img class="look-label-img look-label-img--good" src="${labelOneGood}" alt="" aria-hidden="true">
+    </button>
+    <button class="look-label look-label--two" type="button" aria-label="Inspect label two">
+      <img class="look-label-img" src="${labelTwo}" alt="">
+      <img class="look-label-img look-label-img--good" src="${labelTwoGood}" alt="" aria-hidden="true">
+    </button>
+    <button class="look-label look-label--thre" type="button" aria-label="Inspect label three">
+      <img class="look-label-img" src="${labelThre}" alt="">
+      <img class="look-label-img look-label-img--good" src="${labelThreGood}" alt="" aria-hidden="true">
+    </button>
+    <button class="look-label look-label--four" type="button" aria-label="Inspect label four">
+      <img class="look-label-img" src="${labelFour}" alt="">
+      <img class="look-label-img look-label-img--good" src="${labelFourGood}" alt="" aria-hidden="true">
     </button>
   </div>
   <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created-it's the different way she taught us to see the ones we already have.</p>
@@ -901,13 +919,13 @@ const centerJacket3 = () => {
 centerJacket3();
 window.addEventListener("resize", centerJacket3);
 
-// Look-section: clicking the label swaps it to its "good" version,
-// in the exact same spot.
-const lookLabel = document.querySelector(".look-label");
-
-lookLabel.addEventListener("click", () => {
-  if (lookLabel.classList.contains("is-swapped")) return;
-  lookLabel.classList.add("is-swapped");
+// Look-section: clicking any label swaps it to its "good" version,
+// in the exact same spot (one-time per label).
+document.querySelectorAll(".look-label").forEach((label) => {
+  label.addEventListener("click", () => {
+    if (label.classList.contains("is-swapped")) return;
+    label.classList.add("is-swapped");
+  });
 });
 
 // Mobile hamburger navigation
