@@ -67,12 +67,14 @@ html {
 }
 
 .nav-bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--gutter);
   padding-top: 3rem;
-  z-index: 2;
+  /* Above the mobile menu overlay so logo + close X stay reachable */
+  z-index: 1001;
 }
 
 .logo {
@@ -92,6 +94,10 @@ html {
   border: none;
   background: none;
   cursor: pointer;
+  /* Sits inside .nav-bar alongside the overlay (.nav-menu, z-index 999);
+     must outrank it or the full-screen menu buries the X */
+  position: relative;
+  z-index: 1001;
 }
 
 .hamburger span {
@@ -100,6 +106,60 @@ html {
   height: 8px;
   border-radius: 2px;
   background: var(--main-red);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+/* Hamburger morphs into an X while the menu is open */
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(14px) rotate(45deg);
+}
+
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-14px) rotate(-45deg);
+}
+
+/* Mobile: hamburger opens as a full-screen overlay */
+@media (max-width: 767px) {
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background: var(--bg);
+    text-align: center;
+    z-index: 999;
+  }
+
+  .nav-menu.is-open {
+    display: flex;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 2.2rem;
+  }
+
+  .nav-menu .nav-button {
+    font-size: 1.6rem;
+    padding: 0.8rem 2.4rem;
+  }
+
+  html.menu-open,
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* The overlay must never pass a pan gesture through to the page */
+  .nav-menu {
+    touch-action: none;
+    overscroll-behavior: contain;
+  }
 }
 
 .nav-menu {
@@ -122,6 +182,7 @@ html {
 }
 
 .nav-button {
+  display: inline-block;
   font-family: "subway-berlin-sc", sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
@@ -130,6 +191,7 @@ html {
   border-radius: 999px;
   background: transparent;
   color: var(--main-red);
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -141,7 +203,6 @@ html {
 .hero {
   position: relative;
   flex-grow: 1;
-  margin-top: 3rem;
   overflow: hidden;
 }
 
@@ -186,6 +247,13 @@ html {
   width: auto;
   height: auto;
   z-index: 2;
+}
+
+/* Mobile: "Marina Yee" sits slightly higher */
+@media (max-width: 767px) {
+  .hero-title {
+    top: 25%;
+  }
 }
 
 .quote-section {
@@ -775,7 +843,75 @@ html {
   opacity: 1;
 }
 
-/* Footer — modelled on momu.be: partners strip, secondary nav, socials */
+/* Call-to-action between last section and footer */
+.cta-section {
+  padding: clamp(4rem, 10vw, 8rem) var(--gutter);
+  text-align: center;
+}
+
+.cta-title {
+  margin: 0;
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1;
+  color: var(--main-red);
+}
+
+.cta-copy {
+  max-width: 36em;
+  margin: 1.5rem auto 0;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.cta-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.cta-link {
+  display: inline-block;
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  padding: 0.7rem 2rem;
+  border: 3px solid var(--main-red);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--main-red);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cta-link:hover,
+.cta-link:focus-visible {
+  background: var(--main-red);
+  color: #fff;
+}
+
+.cta-link--solid {
+  background: var(--main-red);
+  color: #fff;
+}
+
+.cta-link--solid:hover,
+.cta-link--solid:focus-visible {
+  background: #9c1c0a;
+}
+
+@media (min-width: 768px) {
+  .cta-links {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+}
+
+/* Footer - modelled on momu.be: partners strip, secondary nav, socials */
 .site-footer {
   margin-top: 3rem;
   padding: var(--gutter);
@@ -901,7 +1037,6 @@ html {
 
 .look-section {
   padding: var(--gutter);
-  margin-top: 3rem;
   color: var(--text);
 }
 

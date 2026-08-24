@@ -49,11 +49,12 @@ document.querySelector("#app").innerHTML = `
 <div class="site-header">
   <nav class="nav-bar">
     <img src="${logo}" class="logo" alt="MoMu logo">
-    <div class="nav-menu">
+    <div class="nav-menu" id="nav-menu">
       <a class="nav-link" href="#about">About</a>
-      <button class="nav-button" type="button">Visit Museum</button>
+      <a class="nav-link" href="https://www.momu.be/en/collection-stories" target="_blank" rel="noopener">Stories</a>
+      <a class="nav-button" href="https://visit.momu.be/" target="_blank" rel="noopener">Visit Museum</a>
     </div>
-    <button class="hamburger" type="button" aria-label="Open menu">
+    <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
       <span></span>
       <span></span>
       <span></span>
@@ -146,7 +147,7 @@ document.querySelector("#app").innerHTML = `
   </div>
   <h2 class="value-title">Marina saw something different</h2>
   <div class="hint-row">
-    <h4 class="value-hint">Find the value by clicking on jacket parts</h4>
+    <h4 class="value-hint">Find what is Marina thinking by clicking on jacket parts</h4>
     <button class="hint-spot value-spot-hint" type="button" aria-label="Show where to click">
       <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
@@ -230,7 +231,7 @@ producing</h3>
   </div>
   <div class="antwerp-copy">
   <p class="about-text">For Marina, reconstruction wasn't a trend or a response to sustainability. It was her way of designing. Every garment carried craftsmanship, materials and stories worth preserving instead of replacing.</p>
-  <p class="about-text">Decades later, many of the ideas that shaped Marina's work—reuse, longevity and thoughtful production—became central to what we now call slow fashion. While the language changed, Marina's philosophy remained the same.</p>
+  <p class="about-text">Decades later, many of the ideas that shaped Marina's work-reuse, longevity and thoughtful production-became central to what we now call slow fashion. While the language changed, Marina's philosophy remained the same.</p>
 <div/>
   </section>
 
@@ -238,7 +239,7 @@ producing</h3>
   <h2 class="new-title">What Do You See Now?</h2>
   <p class="about-text">Throughout this story, you've seen how Marina Yee challenged the idea that clothing loses its value with time.</p>
   <p class="about-text">Now it's your turn</p>
-  <h3 class="new-question">LOOK AGAIN</h3>
+   <h4 class="jacket-hint">scratch label</h4>
   <div class="look-stage">
     <img class="look-image" src="${jacketFinal}" alt="Jacket">
     <button class="look-label" type="button" aria-label="Look at the label">
@@ -246,7 +247,16 @@ producing</h3>
       <img class="look-label-img look-label-img--good" src="${labelOneGood}" alt="" aria-hidden="true">
     </button>
   </div>
-  <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created—it's the different way she taught us to see the ones we already have.</p>
+  <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created-it's the different way she taught us to see the ones we already have.</p>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-title">Look again.</h2>
+  <p class="cta-copy">You've seen fashion through Marina Yee's eyes.<br>Now discover how other designers have challenged what fashion can be.</p>
+  <div class="cta-links">
+    <a class="cta-link" href="https://www.momu.be/en/collection" target="_blank" rel="noopener">Explore the collection at MoMu&nbsp;&rarr;</a>
+    <a class="cta-link cta-link--solid" href="https://visit.momu.be/" target="_blank" rel="noopener">Visit the museum&nbsp;&rarr;</a>
+  </div>
 </section>
 
 <footer class="site-footer">
@@ -309,7 +319,7 @@ producing</h3>
     </address>
   </div>
 
-  <p class="site-footer__legal">© 2026 MoMu — Fashion Museum Antwerp · Nationalestraat 28, 2000 Antwerp</p>
+  <p class="site-footer__legal">© 2026 MoMu - Fashion Museum Antwerp · Nationalestraat 28, 2000 Antwerp</p>
 </footer>
 `;
 
@@ -546,10 +556,10 @@ document
   .addEventListener("click", showHotspotHints);
 
 const valueTexts = [
-  "A trace of the garment's history. Every mark tells the story of how a piece was worn, lived in and valued before it found a new purpose.",
-  "An opportunity to reconstruct. Instead of hiding imperfections, she often used them as the starting point for a new silhouette or unexpected detail.",
-  "Character. Years of wear create textures and tones that cannot be reproduced with new fabric, giving each garment a unique identity.",
-  "A second life. By reworking what already existed, Marina gave forgotten garments a future instead of letting them be thrown away.",
+  "I see its history. Every mark tells me that this garment has already lived a life.",
+  "I see possibility. A hole doesn't have to be hidden - it can become part of what the garment becomes.",
+  "I see character. Time has given this fabric something I could never create from new.",
+  "I see another beginning. Why should a garment's story end simply because its first life is over?",
 ];
 
 const valuePositions = [
@@ -577,7 +587,7 @@ const valueRevealLines = valueTexts.map((text, i) => {
   line.innerHTML = `
     <span class="reveal-number">${i + 1}</span>
     <span class="reveal-body">
-      <span class="reveal-text">${text}</span>
+      <span class="reveal-text">&#8220;${text}&#8221;</span>
       <svg class="reveal-stripe" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <filter id="${filterId}" x="-5%" y="-40%" width="110%" height="180%">
@@ -840,10 +850,10 @@ const initCorrectSequence = () => {
 
   let previous = frames[0];
   frames.forEach((frame, i) => {
-    if (i === 0) return; 
-    tl.to({}, { duration: 0.1 }); 
+    if (i === 0) return;
+    tl.to({}, { duration: 0.1 });
     tl.to(frame, { opacity: 1, duration: 0.45 });
-   
+
     tl.to(previous, { opacity: 0, duration: 0.16 }, "<");
     previous = frame;
   });
@@ -853,9 +863,9 @@ const initCorrectSequence = () => {
       frame.complete
         ? Promise.resolve()
         : new Promise((resolve) =>
-            frame.addEventListener("load", resolve, { once: true })
-          )
-    )
+            frame.addEventListener("load", resolve, { once: true }),
+          ),
+    ),
   ).then(() => ScrollTrigger.refresh());
 };
 
@@ -898,6 +908,68 @@ const lookLabel = document.querySelector(".look-label");
 lookLabel.addEventListener("click", () => {
   if (lookLabel.classList.contains("is-swapped")) return;
   lookLabel.classList.add("is-swapped");
+});
+
+// Mobile hamburger navigation
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+let scrollLockY = 0;
+
+const setMenuOpen = (open) => {
+  if (open) {
+    // Physically freeze the page at the current scroll position.
+    // overflow:hidden alone is ignored by iOS touch scrolling —
+    // a fixed body genuinely cannot move.
+    scrollLockY = window.scrollY;
+    Object.assign(document.body.style, {
+      position: "fixed",
+      top: `${-scrollLockY}px`,
+      left: "0",
+      right: "0",
+      width: "100%",
+    });
+    document.body.classList.add("menu-open");
+  } else {
+    Object.assign(document.body.style, {
+      position: "",
+      top: "",
+      left: "",
+      right: "",
+      width: "",
+    });
+    document.body.classList.remove("menu-open");
+    // Restore the exact spot (bypass the global smooth-scroll)
+    const root = document.documentElement;
+    const prevBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, scrollLockY);
+    root.style.scrollBehavior = prevBehavior;
+  }
+  navMenu.classList.toggle("is-open", open);
+  hamburger.classList.toggle("is-open", open);
+  hamburger.setAttribute("aria-expanded", String(open));
+};
+
+hamburger.addEventListener("click", () => {
+  setMenuOpen(!navMenu.classList.contains("is-open"));
+});
+
+// Choosing an item closes the menu
+navMenu.addEventListener("click", (event) => {
+  if (event.target.closest("a, button")) setMenuOpen(false);
+});
+
+// Tapping outside the nav closes it
+document.addEventListener("click", (event) => {
+  if (navMenu.classList.contains("is-open") && !event.target.closest(".nav-bar")) {
+    setMenuOpen(false);
+  }
+});
+
+// Escape closes it too
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenuOpen(false);
 });
 
 const track = document.querySelector(".carousel-track");
