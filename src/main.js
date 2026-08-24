@@ -156,6 +156,7 @@ document.querySelector("#app").innerHTML = `
       alt="">
     <img
       class="hero-bg-big"
+      fetchpriority="high"
       sizes="(max-width: 1400px) 100vw, 1400px"
       srcset="${headerBackgroundBig200} 200w,
         ${headerBackgroundBig474} 474w,
@@ -190,6 +191,8 @@ document.querySelector("#app").innerHTML = `
 <section class="about about-split" id="about">
   <img
     class="about-img"
+    loading="lazy"
+    decoding="async"
     sizes="(max-width: 493px) 100vw, 493px"
     srcset="${aboutImage200} 200w,
       ${aboutImage363} 363w,
@@ -210,7 +213,7 @@ document.querySelector("#app").innerHTML = `
       .map(
         (img, i) => `
     <figure class="carousel-slide">
-      <img class="carousel-item" src="${img.src}"
+      <img class="carousel-item" loading="lazy" decoding="async" src="${img.src}"
         ${img.sizes ? `sizes="${img.sizes}"` : ""}
         ${img.srcset ? `srcset="${img.srcset}"` : ""} alt="">
       <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
@@ -232,6 +235,8 @@ document.querySelector("#app").innerHTML = `
   <div class="antwerp-hero">
     <img
       class="antwerp-banner"
+      loading="lazy"
+      decoding="async"
       sizes="(max-width: 1080px) 100vw, 1080px"
       srcset="${antwerpSix200} 200w,
         ${antwerpSix738} 738w,
@@ -275,8 +280,8 @@ document.querySelector("#app").innerHTML = `
 
 <section class="value-section">
   <div class="value-marina-wrap">
-    <img class="value-marina" src="${marina}" alt="Portrait of Marina Yee">
-    <img class="value-marina value-marina--open" src="${marinaOpen}" alt="" aria-hidden="true">
+    <img class="value-marina" loading="lazy" decoding="async" src="${marina}" alt="Portrait of Marina Yee">
+    <img class="value-marina value-marina--open" loading="lazy" decoding="async" src="${marinaOpen}" alt="" aria-hidden="true">
   </div>
   <h2 class="value-title">Marina saw something different</h2>
   <div class="hint-row">
@@ -414,22 +419,22 @@ producing</h3>
   <p class="about-text">Now it's your turn</p>
    <h4 class="jacket-hint">scratch label</h4>
   <div class="look-stage">
-    <img class="look-image" src="${jacketFinal}" alt="Jacket">
+    <img class="look-image" loading="lazy" decoding="async" src="${jacketFinal}" alt="Jacket">
     <button class="look-label look-label--one" type="button" aria-label="Inspect label one">
-      <img class="look-label-img" src="${labelOne}" alt="">
-      <img class="look-label-img look-label-img--good" src="${labelOneGood}" alt="" aria-hidden="true">
+      <img class="look-label-img" loading="lazy" decoding="async" src="${labelOne}" alt="">
+      <img class="look-label-img look-label-img--good" loading="lazy" decoding="async" src="${labelOneGood}" alt="" aria-hidden="true">
     </button>
     <button class="look-label look-label--two" type="button" aria-label="Inspect label two">
-      <img class="look-label-img" src="${labelTwo}" alt="">
-      <img class="look-label-img look-label-img--good" src="${labelTwoGood}" alt="" aria-hidden="true">
+      <img class="look-label-img" loading="lazy" decoding="async" src="${labelTwo}" alt="">
+      <img class="look-label-img look-label-img--good" loading="lazy" decoding="async" src="${labelTwoGood}" alt="" aria-hidden="true">
     </button>
     <button class="look-label look-label--thre" type="button" aria-label="Inspect label three">
-      <img class="look-label-img" src="${labelThre}" alt="">
-      <img class="look-label-img look-label-img--good" src="${labelThreGood}" alt="" aria-hidden="true">
+      <img class="look-label-img" loading="lazy" decoding="async" src="${labelThre}" alt="">
+      <img class="look-label-img look-label-img--good" loading="lazy" decoding="async" src="${labelThreGood}" alt="" aria-hidden="true">
     </button>
     <button class="look-label look-label--four" type="button" aria-label="Inspect label four">
-      <img class="look-label-img" src="${labelFour}" alt="">
-      <img class="look-label-img look-label-img--good" src="${labelFourGood}" alt="" aria-hidden="true">
+      <img class="look-label-img" loading="lazy" decoding="async" src="${labelFour}" alt="">
+      <img class="look-label-img look-label-img--good" loading="lazy" decoding="async" src="${labelFourGood}" alt="" aria-hidden="true">
     </button>
   </div>
   <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created-it's the different way she taught us to see the ones we already have.</p>
@@ -935,6 +940,8 @@ pieces.forEach((piece, i) => {
   img.src = piece.src;
   img.alt = "";
   img.draggable = false;
+  img.loading = "lazy";
+  img.decoding = "async";
   img.style.width = `${Math.round(piece.w * 0.78)}px`;
   img.style.left = piece.x;
   img.style.top = piece.y;
@@ -1099,6 +1106,8 @@ jacketItems.forEach((item) => {
   img.src = item.src;
   img.alt = "";
   img.draggable = false;
+  img.loading = "lazy";
+  img.decoding = "async";
   slide.appendChild(img);
   slide.addEventListener("click", () => {
     if (item.correct) {
