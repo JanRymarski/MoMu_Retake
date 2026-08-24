@@ -25,6 +25,7 @@ import jacket04 from "./assets/jacket04.png";
 import jacket05 from "./assets/jacket05.png";
 import jacketFinal from "./assets/jacket_final.png";
 import marina from "./assets/marina.png";
+import marinaOpen from "./assets/marina_openeyes.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,8 +133,11 @@ document.querySelector("#app").innerHTML = `
 </section>
 
 <section class="value-section">
-  <img class="value-marina" src="${marina}" alt="Portrait of Marina Yee">
-  <h2 class="value-title"><span class="value-title-first">Marina saw</span><span class="value-title-second"> something different</span></h2>
+  <div class="value-marina-wrap">
+    <img class="value-marina" src="${marina}" alt="Portrait of Marina Yee">
+    <img class="value-marina value-marina--open" src="${marinaOpen}" alt="" aria-hidden="true">
+  </div>
+  <h2 class="value-title">Marina saw something different</h2>
   <h4 class="value-hint">Find the value by clicking on jacket parts</h4>
   <div class="jacket-wrap">
     <img class="jacket" src="${jacket}" alt="Jacket">
@@ -148,7 +152,7 @@ document.querySelector("#app").innerHTML = `
   <h3 class="new-question">Perhaps the first step towards producing less is learning to see more.</h3>
   <div class="hint-row">
     <h4 class="jacket-hint">reconstruct the garment.</h4>
-    <button class="hint-spot" type="button" aria-label="Show correct placement">
+    <button class="hint-spot placement-spot-hint" type="button" aria-label="Show correct placement">
       <svg class="spot-ring" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
           <filter id="hint-ring-filter" x="-25%" y="-25%" width="150%" height="150%">
@@ -541,7 +545,7 @@ pieces.forEach((piece, i) => {
   stage.appendChild(img);
 });
 
-const hintButton = document.querySelector(".hint-spot");
+const hintButton = document.querySelector(".placement-spot-hint");
 let markerTimer = null;
 
 const markerRing = (i) => {

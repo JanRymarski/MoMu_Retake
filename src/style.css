@@ -447,15 +447,33 @@ html {
   color: #fff;
 }
 
-.value-marina {
+.value-marina-wrap {
   position: absolute;
   top: 0;
   left: 50%;
+  display: grid;
   width: min(70vw, 340px);
   transform: translate(-50%, -60%);
   clip-path: inset(0 0 40% 0);
   z-index: 2;
-  pointer-events: none;
+}
+
+.value-marina-wrap .value-marina {
+  display: block;
+  width: 100%;
+  height: auto;
+  grid-area: 1 / 1;
+}
+
+.value-marina--open {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+@media (hover: hover) {
+  .value-marina-wrap:hover .value-marina--open {
+    opacity: 1;
+  }
 }
 
 .value-title {
@@ -754,9 +772,20 @@ html {
   }
 
   .value-title {
-    font-size: 10.5rem;
+    position: absolute;
+    top: 0;
+    left: var(--gutter);
+    transform: translateY(-50%);
+    margin: 0;
+    z-index: 2;
+    font-size: clamp(5.5rem, 11.25vw, 12rem);
     line-height: 80%;
+    text-wrap: balance;
     -webkit-text-stroke-width: 3px;
+  }
+
+  .value-hint {
+    margin-top: clamp(8rem, 15vw, 12.5rem);
   }
 }
 
@@ -954,21 +983,11 @@ html {
     margin-bottom: 0;
   }
 
-  .value-marina {
+  .value-marina-wrap {
     left: auto;
     right: 0;
     transform: translate(0, -60%);
-  }
-
-  .value-title-first {
-    position: absolute;
-    top: -9rem;
-    left: 16px;
-    white-space: nowrap;
-  }
-
-  .value-title-second {
-    display: block;
+    width: clamp(380px, 34vw, 700px);
   }
 
   .select-top {
