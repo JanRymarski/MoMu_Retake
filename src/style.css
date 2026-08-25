@@ -26,21 +26,17 @@
   --bg: #ebeaea;
   --gutter: 16px;
 
-  /* ---------- Type scale (fluid) ----------
-     Every size scales with the viewport via clamp(min, preferred, max).
-     Breakpoints may redefine a variable (see media queries below) instead
-     of overriding font-size on individual elements. */
-  --fs-xs: clamp(0.85rem, 0.83rem + 0.15vw, 0.95rem);      /* legal, tiny labels */
-  --fs-sm: clamp(1.05rem, 1rem + 0.25vw, 1.18rem);         /* footer nav, headings */
-  --fs-body: clamp(0.9rem, 0.78rem + 0.55vw, 1.125rem);    /* paragraphs */
-  --fs-md: clamp(1.15rem, 1.07rem + 0.42vw, 1.32rem);      /* lead copy */
-  --fs-nav: clamp(1.25rem, 1.16rem + 0.45vw, 1.45rem);     /* nav links + buttons */
-  --fs-lg: clamp(1.5rem, 1.37rem + 0.68vw, 1.85rem);       /* hints, markers, wordmarks */
-  --fs-marker: clamp(1.75rem, 1.58rem + 0.88vw, 2.15rem);  /* hotspot numbers */
-  --fs-menu: clamp(2.2rem, 1.93rem + 1.44vw, 2.6rem);      /* open-menu links */
-  --fs-menu-btn: clamp(1.6rem, 1.48rem + 0.64vw, 1.9rem);  /* open-menu button */
-  --fs-title: clamp(2.9rem, 2.74rem + 0.53vw, 3.15rem);    /* section titles */
-  --fs-hero: clamp(4.5rem, 4.1rem + 1.33vw, 5.4rem);       /* Marina Yee hero */
+  --fs-xs: clamp(0.85rem, 0.83rem + 0.15vw, 0.95rem);
+  --fs-sm: clamp(1.05rem, 1rem + 0.25vw, 1.18rem);
+  --fs-body: clamp(0.9rem, 0.78rem + 0.55vw, 1.125rem);
+  --fs-md: clamp(1.15rem, 1.07rem + 0.42vw, 1.32rem);
+  --fs-nav: clamp(1.25rem, 1.16rem + 0.45vw, 1.45rem);
+  --fs-lg: clamp(1.5rem, 1.37rem + 0.68vw, 1.85rem);
+  --fs-marker: clamp(1.75rem, 1.58rem + 0.88vw, 2.15rem);
+  --fs-menu: clamp(2.2rem, 1.93rem + 1.44vw, 2.6rem);
+  --fs-menu-btn: clamp(1.6rem, 1.48rem + 0.64vw, 1.9rem);
+  --fs-title: clamp(2.9rem, 2.74rem + 0.53vw, 3.15rem);
+  --fs-hero: clamp(4.5rem, 4.1rem + 1.33vw, 5.4rem);
   --fs-new-title: clamp(3rem, 7.5vw, 6rem);
   --fs-new-question: clamp(2rem, 7vw, 4rem);
   --fs-jacket-hint: clamp(1.5rem, 6vw, 3rem);
@@ -48,7 +44,6 @@
   --fs-done-text: clamp(2.5rem, 6vw, 4rem);
   --fs-value-title: clamp(4.5rem, 22vw, 10.5rem);
   --fs-cta-title: clamp(3rem, 9vw, 6.5rem);
-  --fs-cta-link: clamp(1.3rem, 1.21rem + 0.47vw, 1.5rem);
   --fs-slider-question: clamp(3rem, 8.4vw, 7.5rem);
 
   font:
@@ -118,8 +113,6 @@ html {
   border: none;
   background: none;
   cursor: pointer;
-  /* Sits inside .nav-bar alongside the overlay (.nav-menu, z-index 999);
-     must outrank it or the full-screen menu buries the X */
   position: relative;
   z-index: 1001;
 }
@@ -133,7 +126,6 @@ html {
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
-/* Hamburger morphs into an X while the menu is open */
 .hamburger.is-open span:nth-child(1) {
   transform: translateY(14px) rotate(45deg);
 }
@@ -146,7 +138,6 @@ html {
   transform: translateY(-14px) rotate(-45deg);
 }
 
-/* Mobile: hamburger opens as a full-screen overlay */
 @media (max-width: 767px) {
   .nav-menu {
     position: fixed;
@@ -179,7 +170,6 @@ html {
     overflow: hidden;
   }
 
-  /* The overlay must never pass a pan gesture through to the page */
   .nav-menu {
     touch-action: none;
     overscroll-behavior: contain;
@@ -273,7 +263,6 @@ html {
   z-index: 2;
 }
 
-/* Mobile: "Marina Yee" sits slightly higher */
 @media (max-width: 767px) {
   .hero-title {
     top: 25%;
@@ -293,7 +282,7 @@ html {
   font-weight: 400;
   font-style: normal;
   font-size: var(--fs-title);
-  line-height: 1.2;
+  line-height: 0.7;
   color: var(--main-red);
 }
 
@@ -327,6 +316,19 @@ html {
   margin: 0 0 1rem;
   font-size: var(--fs-body);
   line-height: 1.6;
+}
+
+.quote,
+.antwerp-title,
+.new-title,
+.value-title,
+.new-question {
+  text-wrap: balance;
+}
+
+.about-text,
+.cta-copy {
+  text-wrap: pretty;
 }
 
 .antwerp-title {
@@ -374,6 +376,12 @@ html {
   cursor: pointer;
 }
 
+.antwerp-button:hover,
+.antwerp-button:focus-visible {
+  background: var(--main-blue);
+  color: var(--bg);
+}
+
 .antwerp-right {
   display: flex;
   flex-direction: column;
@@ -386,7 +394,7 @@ html {
   font-weight: 400;
   font-style: normal;
   font-size: var(--fs-new-title);
-  line-height: 1.2;
+  line-height: 1.05;
   color: var(--main-red);
 }
 
@@ -596,9 +604,6 @@ html {
   margin: 0;
 }
 
-/* Reveals flank the jacket: left column, jacket, right column.
-   Equal side tracks + a content-sized centre track keep the jacket
-   exactly on the midline between the texts. */
 .value-stage {
   display: grid;
   grid-template-columns: minmax(0, 1fr) min-content minmax(0, 1fr);
@@ -811,7 +816,6 @@ html {
   gap: 12px;
   position: relative;
   overflow-x: auto;
-  /* Room for the hover zoom so it never clips or scrolls vertically. */
   padding: 12px 0;
   margin-top: calc(2rem - 12px);
   overscroll-behavior-x: contain;
@@ -845,8 +849,50 @@ html {
   opacity: 0.65;
 }
 
+.correct-stage {
+  position: relative;
+}
+
 .correct-stage.is-hidden {
   display: none;
+}
+
+.stitch-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.stitch-line path {
+  fill: none;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.42 2.08;
+}
+
+.stitch-line--left-curl path {
+  stroke: var(--main-red);
+}
+
+.stitch-line--right-fall path {
+  stroke: var(--main-blue);
+}
+
+.stitch-line path {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 0.4 2.1;
+}
+
+.stitch-line--left path {
+  stroke: var(--main-red);
+}
+
+.stitch-line--right path {
+  stroke: var(--main-blue);
 }
 
 .correct-sequence {
@@ -867,10 +913,8 @@ html {
   opacity: 1;
 }
 
-/* Call-to-action between last section and footer */
 .cta-section {
   padding: clamp(4rem, 10vw, 8rem) var(--gutter);
-  text-align: center;
 }
 
 .cta-title {
@@ -878,64 +922,106 @@ html {
   font-family: "subway-berlin-sc", sans-serif;
   font-weight: 400;
   font-size: var(--fs-cta-title);
-  line-height: 1;
+  line-height: 0.95;
   color: var(--main-red);
 }
 
 .cta-copy {
-  max-width: 36em;
-  margin: 1.5rem auto 0;
-  font-size: var(--fs-md);
-  line-height: 1.5;
+  max-width: 35rem;
+  margin: 1.5rem 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.6;
 }
 
 .cta-links {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.2rem;
   margin-top: 2.5rem;
 }
 
 .cta-link {
   display: inline-block;
-  font-family: "subway-berlin-sc", sans-serif;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--main-blue);
+  background: none;
+  color: var(--main-blue);
+  font-family: "subway-berlin-std", sans-serif;
   font-weight: 400;
-  font-size: var(--fs-cta-link);
-  padding: 0.7rem 2rem;
-  border: 3px solid var(--main-red);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--main-red);
+  font-style: normal;
+  font-size: var(--fs-nav);
+  line-height: 1;
+  text-transform: lowercase;
   text-decoration: none;
+  cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .cta-link:hover,
 .cta-link:focus-visible {
-  background: var(--main-red);
-  color: #fff;
+  background: var(--main-blue);
+  color: var(--bg);
 }
 
 .cta-link--solid {
-  background: var(--main-red);
-  color: #fff;
+  background: var(--main-blue);
+  color: var(--bg);
 }
 
 .cta-link--solid:hover,
 .cta-link--solid:focus-visible {
-  background: #9c1c0a;
+  background: #2f55c0;
 }
 
 @media (min-width: 768px) {
   .cta-links {
     flex-direction: row;
-    justify-content: center;
     gap: 1.6rem;
   }
 }
 
-/* Footer - modelled on momu.be: partners strip, secondary nav, socials */
+.cta-duo {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .cta-duo {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .cta-duo .cta-section {
+    flex: 1 1 50%;
+  }
+}
+
+.cta-discover-title {
+  margin: 0;
+  font-family: "subway-berlin-sc", sans-serif;
+  font-weight: 400;
+  font-size: var(--fs-title);
+  line-height: 0.95;
+  color: var(--main-red);
+  text-wrap: balance;
+}
+
+.cta-designers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+@media (min-width: 1024px) {
+  .cta-designers {
+    flex-direction: row;
+    gap: 1.6rem;
+  }
+}
+
 .site-footer {
   margin-top: 3rem;
   padding: var(--gutter);
@@ -954,7 +1040,6 @@ html {
 }
 
 .site-footer__partners-label {
-  font-family: "subway-berlin-std", sans-serif;
   font-size: var(--fs-xs);
   text-transform: lowercase;
   color: rgba(255, 255, 255, 0.6);
@@ -971,7 +1056,7 @@ html {
 }
 
 .site-footer__partner-link {
-  font-family: "subway-berlin-sc", sans-serif;
+
   font-size: var(--fs-lg);
   color: #fff;
   text-decoration: none;
@@ -1003,7 +1088,7 @@ html {
 }
 
 .site-footer__nav a {
-  font-family: "subway-berlin-std", sans-serif;
+
   font-size: var(--fs-sm);
   color: #fff;
   text-decoration: none;
@@ -1022,7 +1107,6 @@ html {
 .site-footer__social strong {
   display: block;
   margin-bottom: 0.85rem;
-  font-family: "subway-berlin-std", sans-serif;
   font-weight: 400;
   font-size: var(--fs-sm);
 }
@@ -1066,15 +1150,17 @@ html {
 
 .look-stage {
   position: relative;
-  /* slider-jacket size (min(65vw, 360px)) + 25% */
   width: min(81.25vw, 450px);
   margin: 2rem auto 0;
 }
 
-/* Mobile: jacket a bit smaller */
 @media (max-width: 767px) {
   .look-stage {
     width: min(72vw, 450px);
+  }
+
+  .look-section .new-question {
+    margin-bottom: 3rem;
   }
 }
 
@@ -1086,22 +1172,21 @@ html {
 
 .look-label {
   position: absolute;
-  z-index: 1; /* always paint above .look-image */
+  z-index: 1;
   padding: 0;
   border: none;
   background: none;
   cursor: pointer;
 }
 
-/* All labels share one size */
 .look-label--one,
 .look-label--two,
 .look-label--thre,
 .look-label--four {
-  width: 46%;
+  width: 56%;
+  aspect-ratio: 1;
 }
 
-/* Right side: label one at the shoulder, two just below it */
 .look-label--one {
   top: -5%;
   right: -6%;
@@ -1112,7 +1197,6 @@ html {
   right: -7%;
 }
 
-/* Left side: three upper, four lower */
 .look-label--thre {
   top: 13%;
   left: -6%;
@@ -1126,7 +1210,8 @@ html {
 .look-label-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .look-label-img--good {
@@ -1213,8 +1298,6 @@ html {
     margin-top: clamp(8rem, 15vw, 12.5rem);
   }
 
-  /* The absolute .value-title straddles the section top; push the
-     hint row below it. */
   .value-section .hint-row {
     padding-top: 8rem;
   }
@@ -1224,7 +1307,6 @@ html {
   :root {
     --gutter: 4.3rem;
 
-    /* Larger fluid ranges for the same variables on desktop */
     --fs-title: clamp(3.5rem, 2.6rem + 3.2vw, 6rem);
     --fs-hero: clamp(8rem, 15vw, 13rem);
     --fs-value-title: clamp(5.5rem, 11.25vw, 12rem);
@@ -1275,7 +1357,7 @@ html {
   }
   .about-img{
     max-width: 55%;
-    
+
   }
   .about-split .about-copy {
     grid-column: 2;
@@ -1294,7 +1376,7 @@ html {
   .about-split .about-copy .about-title {
     margin-top: 0;
   }
-  
+
   .carousel-slide {
     width: min(30vw, 420px);
   }
@@ -1449,8 +1531,6 @@ html {
 }
 
 @media (min-width: 1024px) {
-  /* Desktop: "select one jacket" sits under the intro texts instead of
-     spanning the full width. */
   .select-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1466,7 +1546,6 @@ html {
     text-align: left;
   }
 
-  /* Tilted display question, fluid so it shrinks as the window narrows. */
   .slider-question {
     transform: rotate(20.66deg);
     font-size: var(--fs-slider-question);

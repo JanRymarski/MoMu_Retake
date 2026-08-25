@@ -14,11 +14,11 @@ import { initCarousel } from "./features/carousel.js";
 
 document.querySelector("#app").innerHTML = buildPage();
 
-// Recalculate trigger positions once every image/font has loaded,
-// so animations fire exactly where they should.
 window.addEventListener("load", () => ScrollTrigger.refresh());
+if (document.fonts?.ready) {
+  document.fonts.ready.then(() => ScrollTrigger.refresh());
+}
 
-// Feature bootstrap — order mirrors the original single-file script.
 initIntro();
 initWriteOn();
 initAboutReveal();

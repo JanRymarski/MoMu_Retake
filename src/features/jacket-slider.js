@@ -6,9 +6,6 @@ import jacket03 from "../assets/jacket03.png";
 import jacket04 from "../assets/jacket04.png";
 import jacket05 from "../assets/jacket05.png";
 
-// Jacket selection slider. Picking the correct jacket writes the
-// message down and starts the pinned frame sequence; wrong picks
-// fade out and trigger the error popup.
 export const initJacketSlider = ({ showError }) => {
 const jacketItems = [
   { src: jacket01, correct: false },
@@ -22,7 +19,7 @@ const slider = document.querySelector(".jacket-slider");
 const sliderMessage = document.querySelector(".slider-message");
 const jacketSlides = [];
 const correctText =
-  "While the fashion industry focused on producing more garments, Marina focused on discovering more value within one.";
+  "While the fashion industry focused on producing more garments, Marina focused on discovering more value within\u00A0one.";
 
 let sequenceStarted = false;
 
@@ -49,8 +46,6 @@ const initCorrectSequence = () => {
       start: "center center",
       end: "+=1600",
       scrub: 0.5,
-      // Lock the page here: the sequence stays centred and consumes
-      // the scroll until frame five has fully faded in.
       pin: true,
       invalidateOnRefresh: true,
     },
@@ -65,6 +60,28 @@ const initCorrectSequence = () => {
     tl.to(previous, { opacity: 0, duration: 0.16 }, "<");
     previous = frame;
   });
+
+  const seams = gsap.utils.toArray(".stitch-line", stage);
+  if (seams.length) {
+    const seamDuration = tl.duration();
+
+    tl.fromTo(
+      seams,
+      { clipPath: "inset(0% 0% 100% 0%)" },
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: seamDuration * 0.92,
+        ease: "none",
+      },
+      0,
+    );
+    tl.fromTo(
+      gsap.utils.toArray(".stitch-line path", stage),
+      { strokeDashoffset: 0 },
+      { strokeDashoffset: -160, duration: seamDuration, ease: "none" },
+      0,
+    );
+  }
 
   Promise.all(
     frames.map((frame) =>
@@ -90,7 +107,6 @@ jacketItems.forEach((item) => {
   slide.addEventListener("click", () => {
     if (item.correct) {
       sliderMessage.textContent = correctText;
-      // Write the message down the moment it appears
       if (!prefersReducedMotion) playWriteOn(writeOnSplit(sliderMessage));
       initCorrectSequence();
     } else {

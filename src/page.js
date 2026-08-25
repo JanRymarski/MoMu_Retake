@@ -1,5 +1,3 @@
-// The full page markup. Every asset the template interpolates is
-// imported here so Vite fingerprints it and emits responsive variants.
 import logo from "./assets/logo.svg";
 import headerBackground200 from "./assets/header_background_ps9j3g_c_scale,w_200.jpg";
 import headerBackground358 from "./assets/header_background_ps9j3g_c_scale,w_358.jpg";
@@ -76,30 +74,39 @@ import labelThreGood from "./assets/label_thre_good.png";
 import labelFour from "./assets/label_four.png";
 import labelFourGood from "./assets/label_four_good.png";
 
-// Slides may optionally carry responsive data; plain srcs still work.
 const carouselImages = [
   {
     src: carousel1,
+    w: 253,
+    h: 338,
     sizes: "(max-width: 253px) 100vw, 253px",
     srcset: `${carousel1200} 200w, ${carousel1} 253w`,
   },
   {
     src: carousel2,
+    w: 800,
+    h: 1120,
     sizes: "(max-width: 800px) 100vw, 800px",
     srcset: `${carousel2200} 200w, ${carousel2433} 433w, ${carousel2598} 598w, ${carousel2} 800w`,
   },
   {
     src: carousel3,
+    w: 800,
+    h: 1120,
     sizes: "(max-width: 800px) 100vw, 800px",
     srcset: `${carousel3200} 200w, ${carousel3558} 558w, ${carousel3} 800w`,
   },
   {
     src: carousel4,
+    w: 800,
+    h: 1120,
     sizes: "(max-width: 800px) 100vw, 800px",
     srcset: `${carousel4200} 200w, ${carousel4487} 487w, ${carousel4693} 693w, ${carousel4} 800w`,
   },
   {
     src: carousel5,
+    w: 800,
+    h: 1120,
     sizes: "(max-width: 800px) 100vw, 800px",
     srcset: `${carousel5200} 200w, ${carousel5733} 733w, ${carousel5} 800w`,
   },
@@ -167,7 +174,7 @@ export const buildPage = () => `
 </div>
 
 <section class="quote-section">
-  <p class="quote">Seeing value where others saw waste.</p>
+  <p class="quote">Seeing value where others saw&nbsp;waste.</p>
 </section>
 
 <section class="about about-split" id="about">
@@ -196,6 +203,7 @@ export const buildPage = () => `
         (img, i) => `
     <figure class="carousel-slide">
       <img class="carousel-item" decoding="async" src="${img.src}"
+        ${img.w ? `width="${img.w}" height="${img.h}"` : ""}
         ${img.sizes ? `sizes="${img.sizes}"` : ""}
         ${img.srcset ? `srcset="${img.srcset}"` : ""} alt="">
       <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
@@ -206,7 +214,7 @@ export const buildPage = () => `
 </section>
 
 <section class="about about-antwerp">
-  <h2 class="antwerp-title">The Antwerp Six</h2>
+  <h2 class="antwerp-title">The Antwerp&nbsp;Six</h2>
   <div class="antwerp-copy">
     <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours, tailoring or theatrical silhouettes, Marina Yee followed her own path. Her work centred on reconstruction, craftsmanship and giving existing garments a second life.</p>
     <div class="antwerp-right">
@@ -231,15 +239,15 @@ export const buildPage = () => `
 </section>
 
 <section class="about about-jacket">
-  <h2 class="new-title">Always Something New</h2>
+  <h2 class="new-title">Always Something&nbsp;New</h2>
   <p class="about-text">Fashion is built on the promise of something new. Every season introduces new collections, new trends and new reasons to replace what already hangs in our wardrobes. Clothing has become faster to produce, faster to consume and easier to discard. We rarely stop to ask what happens to the garments left behind</p>
-  <h3 class="new-question">What if fashion didn't begin with something new?</h3>
+  <h3 class="new-question">What if fashion didn't begin with something&nbsp;new?</h3>
   <div class="jacket-stage">
     <div class="jacket-wrap">
       <img class="jacket" src="${jacket}" alt="Jacket">
       <div class="jacket-hotspots"></div>
     </div>
-    
+
     <div class="hint-row">
       <h4 class="jacket-hint">Find the flaws by clicking on jacket parts</h4>
       <button class="hint-spot jacket-spot-hint" type="button" aria-label="Show where to click">
@@ -293,9 +301,9 @@ export const buildPage = () => `
 </section>
 
 <section class="reconstruct-section">
-  <h2 class="new-title">From Garment to Design</h2>
+  <h2 class="new-title">From Garment to&nbsp;Design</h2>
   <p class="about-text">Marina Yee didn't begin with a blank canvas. She began with garments that already had a history. By carefully taking them apart, she studied their construction before rebuilding them into something new.</p>
-  <h3 class="new-question">Perhaps the first step towards producing less is learning to see more.</h3>
+  <h3 class="new-question">Perhaps the first step towards producing less is learning to see&nbsp;more.</h3>
   <div class="hint-row">
     <h4 class="jacket-hint">reconstruct the garment.</h4>
     <button class="hint-spot placement-spot-hint" type="button" aria-label="Show correct placement">
@@ -328,7 +336,7 @@ export const buildPage = () => `
 <section class="select-section">
   <div class="select-top">
     <div class="select-intro">
-      <h2 class="new-title">Before Slow Fashion Had a Name</h2>
+      <h2 class="new-title">Before Slow Fashion Had a&nbsp;Name</h2>
       <p class="about-text">When Marina Yee began reconstructing garments in the early 1980s, the fashion industry was driven by new collections and constant change. Existing clothing was rarely seen as the starting point for new design.</p>
       <p class="about-text">Marina chose a different approach. Instead of creating more, she explored what already existed. By carefully deconstructing and rebuilding worn garments, she showed that creativity could begin with history rather than newness.</p>
     </div>
@@ -341,6 +349,38 @@ producing</h3>
   <div class="jacket-slider"></div>
   <div class="slider-message new-question"></div>
   <div class="correct-stage is-hidden" aria-hidden="true">
+    <svg class="stitch-line stitch-line--left-curl" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="stitch-wobble-a" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="11"/>
+          <feDisplacementMap in="SourceGraphic" scale="18"/>
+        </filter>
+      </defs>
+      <path filter="url(#stitch-wobble-a)" vector-effect="non-scaling-stroke" pathLength="100"
+        d="M 20 60
+           C 260 120, 520 240, 610 400
+           C 665 505, 600 615, 480 620
+           C 375 624, 310 555, 330 468
+           C 348 392, 452 388, 492 462
+           C 528 528, 480 610, 400 668
+           C 300 740, 175 805, 95 895
+           C 55 948, 62 978, 78 1000"/>
+    </svg>
+    <svg class="stitch-line stitch-line--right-fall" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="stitch-wobble-b" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.014 0.018" numOctaves="2" seed="23"/>
+          <feDisplacementMap in="SourceGraphic" scale="14"/>
+        </filter>
+      </defs>
+      <path filter="url(#stitch-wobble-b)" vector-effect="non-scaling-stroke" pathLength="100"
+        d="M 965 40
+           C 900 160, 850 280, 830 400
+           C 810 520, 760 620, 660 690
+           C 600 735, 560 800, 585 870
+           C 600 912, 650 940, 715 952
+           C 775 962, 818 980, 828 1000"/>
+    </svg>
     <div class="correct-sequence">
       <img
         class="correct-frame"
@@ -396,7 +436,7 @@ producing</h3>
   </section>
 
 <section class="look-section">
-  <h2 class="new-title">What Do You See Now?</h2>
+  <h2 class="new-title">What Do You See&nbsp;Now?</h2>
   <p class="about-text">Throughout this story, you've seen how Marina Yee challenged the idea that clothing loses its value with time.</p>
   <p class="about-text">Now it's your turn</p>
    <h4 class="jacket-hint">scratch label</h4>
@@ -419,17 +459,29 @@ producing</h3>
       <img class="look-label-img look-label-img--good" loading="lazy" decoding="async" src="${labelFourGood}" alt="" aria-hidden="true">
     </button>
   </div>
+  <h3 class="new-question">Marina Yee didn’t just redesign clothes—she changed how we value&nbsp;them.</h3>
   <p class="about-text">Perhaps the greatest legacy of Marina Yee isn't the garments she created-it's the different way she taught us to see the ones we already have.</p>
 </section>
 
-<section class="cta-section">
-  <h2 class="cta-title">Look again.</h2>
-  <p class="cta-copy">You've seen fashion through Marina Yee's eyes.<br>Now discover how other designers have challenged what fashion can be.</p>
-  <div class="cta-links">
-    <a class="cta-link" href="https://www.momu.be/en/collection" target="_blank" rel="noopener">Explore the collection at MoMu&nbsp;&rarr;</a>
-    <a class="cta-link cta-link--solid" href="https://visit.momu.be/" target="_blank" rel="noopener">Visit the museum&nbsp;&rarr;</a>
-  </div>
-</section>
+<div class="cta-duo">
+  <section class="cta-section">
+    <h2 class="cta-title">Look again.</h2>
+    <p class="cta-copy">You've seen fashion through Marina Yee's eyes.<br>Now discover how other designers have challenged what fashion can be.</p>
+    <div class="cta-links">
+      <a class="cta-link" href="https://www.momu.be/en/collection" target="_blank" rel="noopener">Explore the collection at MoMu&nbsp;&rarr;</a>
+      <a class="cta-link cta-link--solid" href="https://visit.momu.be/" target="_blank" rel="noopener">Visit the museum&nbsp;&rarr;</a>
+    </div>
+  </section>
+
+  <section class="cta-section cta-section--discover">
+    <h2 class="cta-discover-title">There&rsquo;s more to&nbsp;discover</h2>
+    <p class="cta-copy">Marina Yee was one voice among a generation of designers who changed the way fashion could be made, worn and understood. Continue exploring their stories and discover another perspective on&nbsp;fashion.</p>
+    <div class="cta-designers">
+      <a class="cta-link" href="#previous-designer">&larr;&nbsp;previous designer</a>
+      <a class="cta-link" href="#next-designer">next designer&nbsp;&rarr;</a>
+    </div>
+  </section>
+</div>
 
 <footer class="site-footer">
   <div class="site-footer__partners">

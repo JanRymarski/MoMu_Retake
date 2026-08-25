@@ -1,6 +1,5 @@
 import { gsap, ScrollTrigger } from "../motion.js";
 
-// Horizontal carousel pinned to vertical scroll.
 export const initCarousel = () => {
 const track = document.querySelector(".carousel-track");
 const getScrollAmount = () => track.scrollWidth - window.innerWidth;

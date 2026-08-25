@@ -1,7 +1,5 @@
 import { rings, stripes, HINT_DURATION } from "../sketch-effects.js";
 
-// "Always Something New" jacket: clickable hotspots reveal
-// hand-drawn notes about the garment flaws.
 export const initJacketHotspots = () => {
 const spots = [
   { label: "1", x: "72%", y: "16%", text: " A stain that ruined the garment." },

@@ -1,6 +1,5 @@
 import { gsap, prefersReducedMotion } from "../motion.js";
 
-// Hero entrance and the quote section word slide-in.
 export const initIntro = () => {
 gsap.fromTo(
   ".hero-cover",

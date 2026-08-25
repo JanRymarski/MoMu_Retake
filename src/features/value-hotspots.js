@@ -1,7 +1,5 @@
 import { rings, stripes, HINT_DURATION } from "../sketch-effects.js";
 
-// Value section: same hotspot mechanic, but each click reveals
-// what Marina sees in the garment.
 export const initValueHotspots = () => {
 const valueTexts = [
   "I see its history. Every mark tells me that this garment has already lived a life.",
@@ -14,10 +12,9 @@ const valuePositions = [
   { x: "72%", y: "16%" },
   { x: "26%", y: "52%" },
   { x: "60%", y: "62%" },
-  { x: "72%", y: "86%" }, // same place as the fourth spot in about-jacket
+  { x: "72%", y: "86%" },
 ];
 
-// Two revealed texts sit on each side of the jacket.
 const valueSides = ["right", "left", "left", "right"];
 
 const valueLayer = document.querySelector(".value-section .jacket-hotspots");

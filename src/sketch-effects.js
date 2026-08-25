@@ -1,5 +1,3 @@
-// Hand-drawn SVG ring/brush configurations shared by the
-// hotspot, value and reconstruct interactions.
 export const rings = [
   {
     seed: 3,
@@ -62,5 +60,4 @@ export const stripes = [
   { seed: 37, scale: 7 },
 ];
 
-// How long "?" hint states stay visible.
 export const HINT_DURATION = 2000;

@@ -1,7 +1,5 @@
 import { gsap, prefersReducedMotion } from "../motion.js";
 
-// About section: title rises in while paragraph words fade from
-// ghost-grey to full opacity.
 export const initAboutReveal = () => {
 if (prefersReducedMotion) return;
   const aboutSection = document.querySelector("#about");

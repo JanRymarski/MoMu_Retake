@@ -5,8 +5,6 @@ import object4 from "../assets/object4.png";
 import object5 from "../assets/object5.png";
 import { rings } from "../sketch-effects.js";
 
-// Reconstruction puzzle: drag garment pieces onto their targets.
-// Shows a success/error popup and can flash the correct placements.
 export const initReconstruct = () => {
 const pieces = [
   { src: object1, w: 322, x: "8%", y: "8%" },
@@ -30,7 +28,6 @@ const TOLERANCE = 7;
 let lockedCount = 0;
 
 const showDone = () => {
-  // Dismiss the LOOK CLOSER popup if it is still on screen.
   clearTimeout(errorTimer);
   errorPanel.classList.remove("is-done");
   errorPanel.setAttribute("aria-hidden", "true");
