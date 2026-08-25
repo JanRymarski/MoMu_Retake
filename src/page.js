@@ -195,7 +195,7 @@ export const buildPage = () => `
       .map(
         (img, i) => `
     <figure class="carousel-slide">
-      <img class="carousel-item" loading="lazy" decoding="async" src="${img.src}"
+      <img class="carousel-item" decoding="async" src="${img.src}"
         ${img.sizes ? `sizes="${img.sizes}"` : ""}
         ${img.srcset ? `srcset="${img.srcset}"` : ""} alt="">
       <figcaption class="carousel-caption">${carouselCaptions[i]}</figcaption>
