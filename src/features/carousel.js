@@ -16,4 +16,19 @@ gsap.to(track, {
     invalidateOnRefresh: true,
   },
 });
+
+/* stitch-line draws left → right as carousel pins */
+const stitchLine = document.querySelector(".stitch-line--carousel");
+if (stitchLine) {
+  gsap.to(stitchLine, {
+    clipPath: "inset(0 0% 0 0)",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".carousel",
+      start: "top top",
+      end: () => "+=" + getScrollAmount(),
+      scrub: 0.5,
+    },
+  });
+}
 };

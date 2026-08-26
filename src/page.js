@@ -197,6 +197,10 @@ export const buildPage = () => `
 </section>
 
 <section class="carousel">
+  <svg class="stitch-line stitch-line--carousel" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path vector-effect="non-scaling-stroke" pathLength="100"
+      d="M 0 480 C 250 420, 400 380, 500 400 C 600 420, 700 540, 800 500 C 880 470, 940 520, 1000 510"/>
+  </svg>
   <div class="carousel-track">
     ${carouselImages
       .map(
@@ -219,7 +223,7 @@ export const buildPage = () => `
     <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours, tailoring or theatrical silhouettes, Marina Yee followed her own path. Her work centred on reconstruction, craftsmanship and giving existing garments a second life.</p>
     <div class="antwerp-right">
       <p class="about-text">Although they emerged as one generation, each member of the Antwerp Six developed a distinct creative vision. While others explored bold colours</p>
-      <a class="antwerp-button" href="https://www.momu.be/en/exhibitions/the-antwerp-six" target="_blank" rel="noopener">Discover more</a>
+      <a class="antwerp-button" href="https://www.momu.be/en/exhibitions/the-antwerp-six" target="_blank" rel="noopener">Discover more&nbsp;&rarr;</a>
     </div>
   </div>
   <div class="antwerp-hero">
@@ -301,6 +305,7 @@ export const buildPage = () => `
 </section>
 
 <section class="reconstruct-section">
+ 
   <h2 class="new-title">From Garment to&nbsp;Design</h2>
   <p class="about-text">Marina Yee didn't begin with a blank canvas. She began with garments that already had a history. By carefully taking them apart, she studied their construction before rebuilding them into something new.</p>
   <h3 class="new-question">Perhaps the first step towards producing less is learning to see&nbsp;more.</h3>

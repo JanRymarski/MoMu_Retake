@@ -880,19 +880,37 @@ html {
   stroke: var(--main-blue);
 }
 
-.stitch-line path {
+/* Reuse the same dotted stitch pattern behind the carousel
+   and as a decorative background on the reconstruct section. */
+.stitch-line--carousel,
+.stitch-line--reconstruct {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.stitch-line--carousel {
+  clip-path: inset(0 100% 0 0);
+}
+
+.stitch-line--carousel path,
+.stitch-line--reconstruct path {
   fill: none;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-dasharray: 0.4 2.1;
 }
 
-.stitch-line--left path {
+.stitch-line--carousel path {
   stroke: var(--main-red);
 }
 
-.stitch-line--right path {
-  stroke: var(--main-blue);
+.stitch-line--reconstruct path {
+  stroke: rgba(67, 109, 225, 0.25);
 }
 
 .correct-sequence {
@@ -1228,7 +1246,6 @@ html {
 
 .carousel {
   position: relative;
-  height: auto;
   overflow: hidden;
 }
 
@@ -1237,6 +1254,8 @@ html {
   align-items: center;
   gap: clamp(32px, 6vw, 80px);
   padding: 4rem 0 0 var(--gutter);
+  position: relative;
+  z-index: 1;
 }
 
 .carousel-slide {
